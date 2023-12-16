@@ -20,7 +20,7 @@
     outputs = { home-manager, nixpkgs, nur, ... }@inputs: 
         let
             system = "x86_64-linux"; #current system
-            pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+            pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
             lib = nixpkgs.lib;
 
             # This lets us reuse the code to "create" a system

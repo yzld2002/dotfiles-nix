@@ -1,7 +1,6 @@
 { config, lib, inputs, ...}:
 
 {
-    nixpkgs.config.allowUnfree = true;
     imports = [ ../../modules/default.nix ];
     config.modules = {
         # gui
