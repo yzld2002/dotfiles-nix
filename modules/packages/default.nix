@@ -14,7 +14,7 @@ in {
             grim slurp slop
             imagemagick age libnotify
             git python3 lua zig 
-            mpv google-chrome pqiv
+            mpv chromium pqiv
             wf-recorder
         ];
     };
