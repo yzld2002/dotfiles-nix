@@ -108,16 +108,6 @@
 
     # Security 
     security = {
-        sudo.enable = false;
-        doas = {
-            enable = true;
-            extraRules = [{
-                users = [ "yzld2002" ];
-                keepEnv = true;
-                persist = true;
-            }];
-        };
-
         # Extra security
         protectKernelImage = true;
     };
