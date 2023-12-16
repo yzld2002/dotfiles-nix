@@ -15,7 +15,7 @@
     fonts = {
         fonts = with pkgs; [
             openmoji-color
-            (nerdfonts.override { fonts = [ "JetBrainsMono", "CascadiaCode" ]; })
+            (nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
         ];
 
         fontconfig = {
@@ -42,7 +42,7 @@
     # Nix settings, auto cleanup and enable flakes
     nix = {
         settings.auto-optimise-store = true;
-        settings.allowed-users = [ "notus" ];
+        settings.allowed-users = [ "yzld2002" ];
         gc = {
             automatic = true;
             dates = "weekly";
@@ -59,15 +59,15 @@
     boot = {
         cleanTmpDir = true;
         loader = {
-        systemd-boot.enable = true;
-        systemd-boot.editor = false;
-        efi.canTouchEfiVariables = true;
-        timeout = 0;
+          systemd-boot.enable = true;
+          systemd-boot.editor = false;
+          efi.canTouchEfiVariables = true;
+          timeout = 0;
         };
     };
 
     # Set up locales (timezone and keyboard layout)
-    time.timeZone = "America/Los_Angeles";
+    time.timeZone = "Asia/Shanghai";
     i18n.defaultLocale = "en_US.UTF-8";
     console = {
         font = "Lat2-Terminus16";
@@ -75,7 +75,7 @@
     };
 
     # Set up user and enable sudo
-    users.users.notus = {
+    users.users.yzld2002 = {
         isNormalUser = true;
         extraGroups = [ "input" "wheel" ];
         shell = pkgs.zsh;
@@ -101,10 +101,8 @@
         GTK_RC_FILES = "$HOME/.local/share/gtk-1.0/gtkrc";
         GTK2_RC_FILES = "$HOME/.local/share/gtk-2.0/gtkrc";
         MOZ_ENABLE_WAYLAND = "1";
-        ZK_NOTEBOOK_DIR = "$HOME/stuff/notes/";
         EDITOR = "nvim";
         DIRENV_LOG_FORMAT = "";
-        ANKI_WAYLAND = "1";
         DISABLE_QT5_COMPAT = "0";
     };
 
@@ -114,7 +112,7 @@
         doas = {
             enable = true;
             extraRules = [{
-                users = [ "notus" ];
+                users = [ "yzld2002" ];
                 keepEnv = true;
                 persist = true;
             }];
@@ -129,11 +127,10 @@
         enable = true;
     };
 
-    hardware.pulseaudio.enable = true;
     security.rtkit.enable = true;
 
     services.pipewire = {
-        enable = false;
+        enable = true;
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
