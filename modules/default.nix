@@ -20,6 +20,6 @@
 
         # system
         ./xdg
-	    ./packages
+        ./packages
     ];
 }
