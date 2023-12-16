@@ -35,7 +35,7 @@
                 xdg-desktop-portal-wlr
                 xdg-desktop-portal-gtk
             ];
-            config.default = "*";
+            config.common.default = "*";
         };
     };
 
