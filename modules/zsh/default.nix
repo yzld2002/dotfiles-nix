@@ -17,7 +17,7 @@ in {
 
             enableCompletion = true;
             enableAutosuggestions = true;
-            enableSyntaxHighlighting = true;
+            syntaxHighlighting = { enable = true; };
 
             # .zshrc
             initExtra = ''

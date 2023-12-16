@@ -13,7 +13,7 @@
 
     # Install fonts
     fonts = {
-        fonts = with pkgs; [
+        packages = with pkgs; [
             openmoji-color
             (nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
         ];
@@ -35,7 +35,7 @@
                 xdg-desktop-portal-wlr
                 xdg-desktop-portal-gtk
             ];
-            gtkUsePortal = true;
+            config.default = "*";
         };
     };
 
@@ -57,7 +57,7 @@
 
     # Boot settings: clean /tmp/, latest kernel and enable bootloader
     boot = {
-        cleanTmpDir = true;
+        tmp.cleanOnBoot = true;
         loader = {
           systemd-boot.enable = true;
           systemd-boot.editor = false;
