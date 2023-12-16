@@ -3,7 +3,6 @@
 {
     # Remove unecessary preinstalled packages
     environment.defaultPackages = [ ];
-    services.xserver.desktopManager.xterm.enable = false;
 
     programs.zsh.enable = true;
 
@@ -15,10 +14,8 @@
     # Install fonts
     fonts = {
         fonts = with pkgs; [
-            jetbrains-mono
-            roboto
             openmoji-color
-            (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+            (nerdfonts.override { fonts = [ "JetBrainsMono", "CascadiaCode" ]; })
         ];
 
         fontconfig = {
@@ -144,7 +141,7 @@
     
     # Disable bluetooth, enable pulseaudio, enable opengl (for Wayland)
     hardware = {
-        bluetooth.enable = false;
+        bluetooth.enable = true;
         opengl = {
             enable = true;
             driSupport = true;
