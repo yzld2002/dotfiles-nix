@@ -10,6 +10,7 @@
         dunst.enable = true;
         hyprland.enable = true;
         wofi.enable = true;
+        kitty.enable = true;
 
         # cli
         nvim.enable = true;

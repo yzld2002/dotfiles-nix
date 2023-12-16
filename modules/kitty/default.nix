@@ -1,0 +1,14 @@
+{ pkgs, lib, config, ... }:
+
+with lib;
+let cfg = config.modules.kitty;
+
+in {
+    options.modules.kitty = { enable = mkEnableOption "wofi"; };
+    config = mkIf cfg.enable {
+        programs.kitty = {
+            enable = true;
+        };
+    };
+}
+
