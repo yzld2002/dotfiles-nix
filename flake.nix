@@ -9,15 +9,10 @@
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-
-        nur = {
-            url = "github:nix-community/NUR";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
     };
 
     # All outputs for the system (configs)
-    outputs = { home-manager, nixpkgs, nur, ... }@inputs: 
+    outputs = { home-manager, nixpkgs, ... }@inputs: 
         let
             system = "x86_64-linux"; #current system
             pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
@@ -45,11 +40,6 @@
                                 # Home manager config (configures programs like firefox, zsh, eww, etc)
                                 users.yzld2002 = (./. + "/hosts/${hostname}/user.nix");
                             };
-                            nixpkgs.overlays = [
-                                # Add nur overlay for Firefox addons
-                                nur.overlay
-                                (import ./overlays)
-                            ];
                         }
                     ];
                     specialArgs = { inherit inputs; };
