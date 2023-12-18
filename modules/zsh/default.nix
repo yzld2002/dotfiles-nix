@@ -5,62 +5,62 @@ in {
     options.modules.zsh = { enable = mkEnableOption "zsh"; };
 
     config = mkIf cfg.enable {
-    	home.packages = [
-	    pkgs.zsh
-	];
+    	  home.packages = [
+	      pkgs.zsh
+    ];
 
-        programs.zsh = {
-            enable = true;
+    programs.zsh = {
+        enable = true;
 
-            # directory to put config files in
-            dotDir = ".config/zsh";
+        # directory to put config files in
+        dotDir = ".config/zsh";
 
-            enableCompletion = true;
-            enableAutosuggestions = true;
-            syntaxHighlighting = { enable = true; };
+        enableCompletion = true;
+        enableAutosuggestions = true;
+        syntaxHighlighting = { enable = true; };
 
-            # .zshrc
-            initExtra = ''
-                PROMPT="%F{blue}%m %~%b "$'\n'"%(?.%F{green}%Bλ%b |.%F{red}?) %f"
+        # .zshrc
+        initExtra = ''
+            PROMPT="%F{blue}%m %~%b "$'\n'"%(?.%F{green}%Bλ%b |.%F{red}?) %f"
 
-                export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store";
-                export ZK_NOTEBOOK_DIR="~/stuff/notes";
-                export DIRENV_LOG_FORMAT="";
-                bindkey '^ ' autosuggest-accept
+            export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store";
+            export ZK_NOTEBOOK_DIR="~/stuff/notes";
+            export DIRENV_LOG_FORMAT="";
+            bindkey '^ ' autosuggest-accept
 
-                edir() { tar -cz $1 | age -p > $1.tar.gz.age && rm -rf $1 &>/dev/null && echo "$1 encrypted" }
-                ddir() { age -d $1 | tar -xz && rm -rf $1 &>/dev/null && echo "$1 decrypted" }
-            '';
+            edir() { tar -cz $1 | age -p > $1.tar.gz.age && rm -rf $1 &>/dev/null && echo "$1 encrypted" }
+            ddir() { age -d $1 | tar -xz && rm -rf $1 &>/dev/null && echo "$1 decrypted" }
+        '';
 
-            # basically aliases for directories: 
-            # `cd ~dots` will cd into ~/.config/nixos
-            dirHashes = {
-                dots = "$HOME/.config/nixos";
-                stuff = "$HOME/stuff";
-                media = "/run/media/$USER";
-                junk = "$HOME/stuff/other";
-            };
+        # basically aliases for directories: 
+        # `cd ~dots` will cd into ~/.config/nixos
+        dirHashes = {
+            dots = "$HOME/.config/nixos";
+            stuff = "$HOME/stuff";
+            media = "/run/media/$USER";
+            junk = "$HOME/stuff/other";
+        };
 
-            # Tweak settings for history
-            history = {
-                save = 1000;
-                size = 1000;
-                path = "$HOME/.cache/zsh_history";
-            };
+        # Tweak settings for history
+        history = {
+            save = 1000;
+            size = 1000;
+            path = "$HOME/.cache/zsh_history";
+        };
 
-            # Set some aliases
-            shellAliases = {
-                c = "clear";
-                mkdir = "mkdir -vp";
-                rm = "rm -rifv";
-                mv = "mv -iv";
-                cp = "cp -riv";
-                cat = "bat --paging=never --style=plain";
-                ls = "exa -a --icons";
-                tree = "exa --tree --icons";
-                nd = "nix develop -c $SHELL";
-                rebuild = "doas nixos-rebuild switch --flake $NIXOS_CONFIG_DIR --fast; notify-send 'Rebuild complete\!'";
-            };
+        # Set some aliases
+        shellAliases = {
+            c = "clear";
+            mkdir = "mkdir -vp";
+            rm = "rm -rifv";
+            mv = "mv -iv";
+            cp = "cp -riv";
+            cat = "bat --paging=never --style=plain";
+            ls = "exa -a --icons";
+            tree = "exa --tree --icons";
+            nd = "nix develop -c $SHELL";
+            rebuild = "doas nixos-rebuild switch --flake $NIXOS_CONFIG_DIR --fast; notify-send 'Rebuild complete\!'";
+        };
     };
 };
 }
