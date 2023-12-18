@@ -49,7 +49,6 @@
             nixosConfigurations = {
                 # Now, defining a new system is can be done in one line
                 #                                Architecture   Hostname
-                # laptop = mkSystem inputs.nixpkgs "x86_64-linux" "laptop";
                 m600 = mkSystem inputs.nixpkgs "x86_64-linux" "m600";
             };
     };

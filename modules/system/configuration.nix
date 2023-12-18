@@ -126,7 +126,6 @@
         pulse.enable = true;
     };
     
-    # Disable bluetooth, enable pulseaudio, enable opengl (for Wayland)
     hardware = {
         bluetooth.enable = true;
         opengl = {
