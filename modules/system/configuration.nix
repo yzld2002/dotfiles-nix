@@ -79,6 +79,7 @@
         isNormalUser = true;
         extraGroups = [ "input" "wheel" ];
         shell = pkgs.zsh;
+        openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrXXyJpW0Wqb/cOfYgsJLTt9jFmOciMGaCvVrGrSIvPIkSnh6f9SM78K9u3p3lKjy6rjPAgk2wE8k00dUwe5gjnDQXpVpRN+v0C2taZO44bbllPLVt+bFIOA98DKO19qMb3uXGwO/Q8gaGIHQaI9wx3wHyNi/4ij91xJlBrs16M8yXsmVBAB0bGKbrv5r9CizjrMRb83kTiYUbVbLMcezTmlUQyLibeg9VnlWITUbXFhEJsC+/WXrlLNOY9/0xbPU6wmb1I2SlT8pRs8q8YTRZB544hzDU73tcjVIprjN7h4WIzvruHfiZwiFcWN+IOnvzSaUtylRYh6hjI0ip868t yzld2002@yzld2002" ];
     };
 
     # Set up networking and secure it
@@ -87,8 +88,8 @@
         firewall = {
             enable = true;
             allowedTCPPorts = [ 443 80 ];
-            allowedUDPPorts = [ 443 80 44857 ];
-            allowPing = false;
+            allowedUDPPorts = [ 443 80 ];
+            allowPing = true;
         };
     };
 
@@ -131,6 +132,17 @@
         opengl = {
             enable = true;
             driSupport = true;
+        };
+        firmware = [ pkgs.linux-firmware ];
+    };
+
+    services.openssh = {
+        enable = true;
+        settings = {
+          # Forbid root login through SSH.
+          PermitRootLogin = "no";
+          # Use keys only. Remove if you want to SSH using password (not recommended)
+          PasswordAuthentication = false;
         };
     };
 
