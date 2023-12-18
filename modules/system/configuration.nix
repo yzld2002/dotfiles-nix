@@ -146,6 +146,17 @@
         };
     };
 
+    services.greetd = {
+      enable = true;
+      settings = rec {
+        initial_session = {
+          command = "Hyprland";
+          user = "yzld2002";
+        };
+        default_session = initial_session;
+      };
+    };
+
     # Do not touch
     system.stateVersion = "20.09";
 }
