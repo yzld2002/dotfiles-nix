@@ -10,7 +10,7 @@ in {
         enable = true;
         font = {
           name = "CaskaydiaCoveNerdFont";
-          font = 16;
+          size = 16;
         };
         shellIntegration.enableZshIntegration = true;
         theme = "One Half Dark";
