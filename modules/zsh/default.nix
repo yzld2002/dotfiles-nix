@@ -8,8 +8,6 @@ in {
    	  home.packages = [
         pkgs.zsh
       ];
-      programs.lazygit.enable = true;
-      programs.gh.enable = true;
       # ZSH
       programs.starship = {
         enable = true;
