@@ -37,7 +37,7 @@
                                 useUserPackages = true;
                                 useGlobalPkgs = true;
                                 extraSpecialArgs = { inherit inputs; };
-                                # Home manager config (configures programs like firefox, zsh, eww, etc)
+                                # Home manager config (configures programs like zsh, eww, etc)
                                 users.yzld2002 = (./. + "/hosts/${hostname}/user.nix");
                             };
                         }
