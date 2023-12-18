@@ -4,8 +4,6 @@
     imports = [ ../../modules/default.nix ];
     config.modules = {
         # gui
-        # firefox.enable = true;
-        # foot.enable = true;
         eww.enable = true;
         dunst.enable = true;
         hyprland.enable = true;
