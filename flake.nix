@@ -21,6 +21,7 @@
                 pkgs.lib.nixosSystem {
                     system = system;
                     modules = [
+                        { nixpkgs.config.allowUnfree = true; }
                         { networking.hostName = hostname; }
                         # General configuration (users, networking, sound, etc)
                         ./modules/system/configuration.nix
