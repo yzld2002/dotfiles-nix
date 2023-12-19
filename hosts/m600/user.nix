@@ -9,6 +9,7 @@
     hyprland.enable = true;
     wofi.enable = true;
     kitty.enable = true;
+    gui.enable = true;
 
     # cli
     nvim.enable = true;

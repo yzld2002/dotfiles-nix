@@ -9,6 +9,7 @@
     ./hyprland
     ./wofi
     ./kitty
+    ./gui
 
     # cli
     ./nvim
