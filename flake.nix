@@ -14,10 +14,6 @@
     # All outputs for the system (configs)
     outputs = { home-manager, nixpkgs, ... }@inputs: 
         let
-            system = "x86_64-linux"; #current system
-            pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-            lib = nixpkgs.lib;
-
             # This lets us reuse the code to "create" a system
             # Credits go to sioodmy on this one!
             # https://github.com/sioodmy/dotfiles/blob/main/flake.nix
@@ -50,7 +46,7 @@
             nixosConfigurations = {
                 # Now, defining a new system is can be done in one line
                 #                                Architecture   Hostname
-                m600 = mkSystem pkgs "x86_64-linux" "m600";
+                m600 = mkSystem inputs.nixpkgs "x86_64-linux" "m600";
             };
     };
 }
