@@ -12,7 +12,7 @@
   };
 
   # All outputs for the system (configs)
-  outputs = { home-manager, nixpkgs, ... }@inputs: 
+  outputs = { self,nixpkgs, home-manager, ... }: 
     let
     # This lets us reuse the code to "create" a system
     # Credits go to sioodmy on this one!
