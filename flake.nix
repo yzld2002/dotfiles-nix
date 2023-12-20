@@ -26,7 +26,6 @@
         # General configuration (users, networking, sound, etc)
         ./modules/system/configuration.nix
         # Hardware config (bootloader, kernel modules, filesystems, etc)
-        # DO NOT USE MY HARDWARE CONFIG!! USE YOUR OWN!!
         (./. + "/hosts/${hostname}/hardware-configuration.nix")
         # Per system special config
         (./. + "/hosts/${hostname}/system.nix")
@@ -36,7 +35,6 @@
             useUserPackages = true;
             useGlobalPkgs = true;
             extraSpecialArgs = { inherit inputs; };
-            # Home manager config (configures programs like zsh, eww, etc)
             users.yzld2002 = (./. + "/hosts/${hostname}/user.nix");
           };
         }
