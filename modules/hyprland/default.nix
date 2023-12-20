@@ -10,8 +10,7 @@ in {
       wofi wl-clipboard hyprland waybar dunst
     ];
     home.file.".config/hypr/hyprland.conf".source = ./hyprland.conf;
-  };
-  programs.waybar = {
+    programs.waybar = {
       enable = true;
       systemd = {
         enable = false;
@@ -871,4 +870,5 @@ in {
               }
       '';
     };
+  };
 }
