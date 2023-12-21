@@ -8,6 +8,7 @@
       noto-fonts-emoji
       nerdfonts
       twemoji-color-font
+      sarasa-gothic
     ];
     fontconfig = {
       localConf = ''

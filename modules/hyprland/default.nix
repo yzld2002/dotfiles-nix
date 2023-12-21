@@ -15,8 +15,7 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-      systemdIntegration = true;
-      nvidiaPatches = false;
+      systemd.enable = true;
       extraConfig = ''
         # PA329CV for m600
         monitor=,preferred,auto,1.5
