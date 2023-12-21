@@ -3,10 +3,11 @@
 with lib;
 let cfg = config.modules.hyprland;
 
+
 in {
+  imports = [ ./fonts ./mako ./waybar ./wofi ];
   options.modules.hyprland= { enable = mkEnableOption "hyprland"; };
   config = mkIf cfg.enable {
-    imports = [ ./fonts ./mako ./waybar ./wofi ];
     home.packages = with pkgs; [
       wl-clipboard hyprland
     ];
