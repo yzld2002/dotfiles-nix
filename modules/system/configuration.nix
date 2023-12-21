@@ -11,22 +11,6 @@
     acpi tlp git
   ];
 
-  # Install fonts
-  fonts = {
-    packages = with pkgs; [
-      openmoji-color
-        (nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
-    ];
-
-    fontconfig = {
-      hinting.autohint = true;
-      defaultFonts = {
-        emoji = [ "OpenMoji Color" ];
-      };
-    };
-  };
-
-
   # Wayland stuff: enable XDG integration, allow sway to use brillo
   xdg = {
     portal = {

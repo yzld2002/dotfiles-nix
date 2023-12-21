@@ -6,408 +6,164 @@ let cfg = config.modules.hyprland;
 in {
   options.modules.hyprland= { enable = mkEnableOption "hyprland"; };
   config = mkIf cfg.enable {
+    imports = [ ./fonts ./mako ./waybar ./wofi ];
     home.packages = with pkgs; [
       wl-clipboard hyprland
     ];
-    home.file.".config/hypr/hyprland.conf".source = ./hyprland.conf;
     services.mpd.enable = true;
-    services.mako = {
+
+    wayland.windowManager.hyprland = {
       enable = true;
-      font = "JetBrainsMono Nerd Font 12";
-      width = 256;
-      height = 500;
-      margin = "10";
-      padding = "5";
-      borderSize = 3;
-      borderRadius = 3;
-      backgroundColor = "#eff1f5";
-      borderColor = "#c0caf5";
-      progressColor = "over #ccd0da";
-      textColor = "#414868";
-      defaultTimeout = 5000;
+      systemdIntegration = true;
+      nvidiaPatches = false;
       extraConfig = ''
-        text-alignment=center
-        [urgency=high]
-        border-color=#fe640b
-      '';
-    };
-
-    programs.waybar = {
-      enable = true;
-      style = ''
-               * {
-                 font-family: "JetBrainsMono Nerd Font";
-                 font-size: 12pt;
-                 font-weight: bold;
-                 border-radius: 0px;
-                 transition-property: background-color;
-                 transition-duration: 0.5s;
-               }
-               @keyframes blink_red {
-                 to {
-                   background-color: rgb(242, 143, 173);
-                   color: rgb(26, 24, 38);
-                 }
-               }
-               .warning, .critical, .urgent {
-                 animation-name: blink_red;
-                 animation-duration: 1s;
-                 animation-timing-function: linear;
-                 animation-iteration-count: infinite;
-                 animation-direction: alternate;
-               }
-               window#waybar {
-                 background-color: transparent;
-               }
-               window > box {
-                 margin-left: 5px;
-                 margin-right: 5px;
-                 margin-top: 5px;
-                 background-color: rgb(30, 30, 46);
-               }
-         #workspaces {
-                 padding-left: 0px;
-                 padding-right: 4px;
-               }
-         #workspaces button {
-                 padding-top: 5px;
-                 padding-bottom: 5px;
-                 padding-left: 6px;
-                 padding-right: 6px;
-               }
-         #workspaces button.active {
-                 background-color: rgb(181, 232, 224);
-                 color: rgb(26, 24, 38);
-               }
-         #workspaces button.urgent {
-                 color: rgb(26, 24, 38);
-               }
-         #workspaces button:hover {
-                 background-color: rgb(248, 189, 150);
-                 color: rgb(26, 24, 38);
-               }
-               tooltip {
-                 background: rgb(48, 45, 65);
-               }
-               tooltip label {
-                 color: rgb(217, 224, 238);
-               }
-         #custom-launcher {
-                 font-size: 20px;
-                 padding-left: 8px;
-                 padding-right: 6px;
-                 color: #7ebae4;
-               }
-         #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal {
-                 padding-left: 10px;
-                 padding-right: 10px;
-               }
-               /* #mode { */
-               /* 	margin-left: 10px; */
-               /* 	background-color: rgb(248, 189, 150); */
-               /*     color: rgb(26, 24, 38); */
-               /* } */
-         #memory {
-                 color: rgb(181, 232, 224);
-               }
-         #cpu {
-                 color: rgb(245, 194, 231);
-               }
-         #clock {
-                 color: rgb(217, 224, 238);
-               }
-        /* #idle_inhibitor {
-                 color: rgb(221, 182, 242);
-               }*/
-         #custom-wall {
-                 color: rgb(221, 182, 242);
-            }
-         #temperature {
-                 color: rgb(150, 205, 251);
-               }
-         #backlight {
-                 color: rgb(248, 189, 150);
-               }
-         #pulseaudio {
-                 color: rgb(245, 224, 220);
-               }
-         #network {
-                 color: #ABE9B3;
-               }
-
-         #network.disconnected {
-                 color: rgb(255, 255, 255);
-               }
-         #battery.charging, #battery.full, #battery.discharging {
-                 color: rgb(250, 227, 176);
-               }
-         #battery.critical:not(.charging) {
-                 color: rgb(242, 143, 173);
-               }
-         #custom-powermenu {
-                 color: rgb(242, 143, 173);
-               }
-         #tray {
-                 padding-right: 8px;
-                 padding-left: 10px;
-               }
-         #mpd.paused {
-                 color: #414868;
-                 font-style: italic;
-               }
-         #mpd.stopped {
-                 background: transparent;
-               }
-         #mpd {
-                 color: #c0caf5;
-               }
-         #custom-cava-internal{
-                 font-family: "Hack Nerd Font" ;
-               }
-      '';
-      settings = [{
-        "layer" = "top";
-        "position" = "top";
-        modules-left = [
-          "custom/launcher"
-          "hyprland/workspaces"
-          "temperature"
-          #"idle_inhibitor"
-          "custom/wall"
-          "mpd"
-          "custom/cava-internal"
-        ];
-        modules-center = [
-          "clock"
-        ];
-        modules-right = [
-          "pulseaudio"
-          "backlight"
-          "memory"
-          "cpu"
-          "network"
-          "battery"
-          "custom/powermenu"
-          "tray"
-        ];
-        "custom/launcher" = {
-          "format" = " ";
-          "on-click" = "pkill wofi || wofi";
-          "tooltip" = false;
-        };
-        "custom/wall" = {
-          "on-click" = "wallpaper_random";
-          "on-click-middle" = "default_wall";
-          "on-click-right" = "killall dynamic_wallpaper || dynamic_wallpaper &";
-          "format" = " 󰠖 ";
-          "tooltip" = false;
-        };
-        "custom/cava-internal" = {
-          "exec" = "sleep 1s && cava-internal";
-          "tooltip" = false;
-        };
-        "hyprland/workspaces" = {
-          "format" = "{icon}";
-          "on-click" = "activate";
-          # "on-scroll-up" = "hyprctl dispatch workspace e+1";
-          # "on-scroll-down" = "hyprctl dispatch workspace e-1";
-        };
-        "idle_inhibitor" = {
-          "format" = "{icon}";
-          "format-icons" = {
-            "activated" = "";
-            "deactivated" = "";
-          };
-          "tooltip" = false;
-        };
-        "backlight" = {
-          "device" = "intel_backlight";
-          "on-scroll-up" = "light -A 5";
-          "on-scroll-down" = "light -U 5";
-          "format" = "{icon} {percent}%";
-          "format-icons" = [ "󰃝" "󰃞" "󰃟" "󰃠" ];
-        };
-        "pulseaudio" = {
-          "scroll-step" = 1;
-          "format" = "{icon} {volume}%";
-          "format-muted" = "󰖁 Muted";
-          "format-icons" = {
-            "default" = [ "" "" "" ];
-          };
-          "on-click" = "pamixer -t";
-          "tooltip" = false;
-        };
-        "battery" = {
-          "interval" = 10;
-          "states" = {
-            "warning" = 20;
-            "critical" = 10;
-          };
-          "format" = "{icon} {capacity}%";
-          "format-icons" = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
-          "format-full" = "{icon} {capacity}%";
-          "format-charging" = "󰂄 {capacity}%";
-          "tooltip" = false;
-        };
-        "clock" = {
-          "interval" = 1;
-          "format" = "{:%I:%M %p  %A %b %d}";
-          "tooltip" = true;
-          /* "tooltip-format"= "{=%A; %d %B %Y}\n<tt>{calendar}</tt>" */
-          "tooltip-format" = "上午：高数\n下午：Ps\n晚上：Golang\n<tt>{calendar}</tt>";
-        };
-        "memory" = {
-          "interval" = 1;
-          "format" = "󰍛 {percentage}%";
-          "states" = {
-            "warning" = 85;
-          };
-        };
-        "cpu" = {
-          "interval" = 1;
-          "format" = "󰻠 {usage}%";
-        };
-        "mpd" = {
-          "max-length" = 25;
-          "format" = "<span foreground='#bb9af7'></span> {title}";
-          "format-paused" = " {title}";
-          "format-stopped" = "<span foreground='#bb9af7'></span>";
-          "format-disconnected" = "";
-          "on-click" = "mpc --quiet toggle";
-          "on-click-right" = "mpc update; mpc ls | mpc add";
-          "on-click-middle" = "kitty --class='ncmpcpp' ncmpcpp ";
-          "on-scroll-up" = "mpc --quiet prev";
-          "on-scroll-down" = "mpc --quiet next";
-          "smooth-scrolling-threshold" = 5;
-          "tooltip-format" = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
-        };
-        "network" = {
-          "format-disconnected" = "󰯡 Disconnected";
-          "format-ethernet" = "󰀂 {ifname} ({ipaddr})";
-          "format-linked" = "󰖪 {essid} (No IP)";
-          "format-wifi" = "󰖩 {essid}";
-          "interval" = 1;
-          "tooltip" = false;
-        };
-        "temperature" = {
-          # "hwmon-path"= "${env:HWMON_PATH}";
-          #"critical-threshold"= 80;
-          "tooltip" = false;
-          "format" = " {temperatureC}°C";
-        };
-        "custom/powermenu" = {
-          "format" = "";
-          "on-click" = "pkill wofi || wofi";
-          "tooltip" = false;
-        };
-        "tray" = {
-          "icon-size" = 15;
-          "spacing" = 5;
-        };
-      }];
-    };
-
-    programs.wofi = {
-      enable = true;
-      settings = {
-        mode = "drun";
-      };
-      style = ''
-        /* Latte Flamingo */
-        @define-color accent #dd7878;
-        @define-color txt #4c4f69;
-        @define-color bg #eff1f5;
-        @define-color bg2 #bcc0cc;
+        # PA329CV for m600
+        monitor=,preferred,auto,1.5
         
-         * {
-            font-family: 'JetBrains Mono Nerd Font', monospace;
-            font-size: 14px;
-         }
+        exec-once = waybar & mako
         
-         /* Window */
-         window {
-            margin: 0px;
-            padding: 10px;
-            border: 3px solid @accent;
-            border-radius: 7px;
-            background-color: @bg;
-            animation: slideIn 0.5s ease-in-out both;
-         }
+        # Source a file (multi-file configs)
+        # source = ~/.config/hypr/myColors.conf
         
-         /* Slide In */
-         @keyframes slideIn {
-            0% {
-               opacity: 0;
+        $terminal = kitty
+        $menu = wofi --show drun
+        
+        env = XCURSOR_SIZE,24
+        env = QT_QPA_PLATFORMTHEME,qt5ct # change to qt6ct if you have that
+        
+        # unscale XWayland
+        xwayland {
+          force_zero_scaling = true
+        }
+        
+        input {
+            kb_layout = us
+            kb_variant =
+            kb_model =
+            kb_options = ctrl:nocaps
+            kb_rules =
+        
+            follow_mouse = 1
+        
+            touchpad {
+                natural_scroll = false
             }
         
-            100% {
-               opacity: 1;
+            sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+        }
+        
+        general {
+            layout = dwindle
+        
+            gaps_in = 5
+            gaps_out = 20
+            border_size = 2
+            col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
+            col.inactive_border = rgba(595959aa)
+        }
+        
+        decoration {
+            rounding = 10
+        
+            blur {
+                enabled = true
+                size = 3
+                passes = 1
+                
+                vibrancy = 0.1696
             }
-         }
+        }
         
-         /* Inner Box */
-         #inner-box {
-            margin: 5px;
-            padding: 10px;
-            border: none;
-            background-color: @bg;
-            animation: fadeIn 0.5s ease-in-out both;
-         }
+        animations {
+            enabled = true
         
-         /* Fade In */
-         @keyframes fadeIn {
-            0% {
-               opacity: 0;
-            }
+            # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
         
-            100% {
-               opacity: 1;
-            }
-         }
+            bezier = myBezier, 0.05, 0.9, 0.1, 1.05
         
-         /* Outer Box */
-         #outer-box {
-            margin: 5px;
-            padding: 10px;
-            border: none;
-            background-color: @bg;
-         }
+            animation = windows, 1, 7, myBezier
+            animation = windowsOut, 1, 7, default, popin 80%
+            animation = border, 1, 10, default
+            animation = borderangle, 1, 8, default
+            animation = fade, 1, 7, default
+            animation = workspaces, 1, 6, default
+        }
         
-         /* Scroll */
-         #scroll {
-            margin: 0px;
-            padding: 10px;
-            border: none;
-         }
+        dwindle {
+            pseudotile = true # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+            preserve_split = true # you probably want this
+        }
         
-         /* Input */
-         #input {
-            margin: 5px;
-            padding: 10px;
-            border: none;
-            color: @accent;
-            background-color: @bg2;
-            animation: fadeIn 0.5s ease-in-out both;
-         }
+        gestures {
+            workspace_swipe = false
+        }
         
-         /* Text */
-         #text {
-            margin: 5px;
-            padding: 10px;
-            border: none;
-            color: @txt;
-            animation: fadeIn 0.5s ease-in-out both;
-         }
+        misc {
+            force_default_wallpaper = -1 # Set to 0 to disable the anime mascot wallpapers
+        }
         
-         /* Selected Entry */
-         #entry:selected {
-           background-color: @accent;
-         }
+        # Example windowrule v1
+        # windowrule = float, ^(kitty)$
+        # Example windowrule v2
+        # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
+        # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+        windowrulev2 = nomaximizerequest, class:.* # You'll probably like this.
         
-         #entry:selected #text {
-            color: @bg;
-         }
-      '';
-    };
+        
+        # See https://wiki.hyprland.org/Configuring/Keywords/ for more
+        $mainMod = ALT
+        
+        # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+        bind = $mainMod, Q, exec, $terminal
+        bind = $mainMod, C, killactive,
+        bind = $mainMod, M, exit,
+        bind = $mainMod, V, togglefloating,
+        bind = $mainMod, R, exec, $menu
+        bind = $mainMod, P, pseudo, # dwindle
+        bind = $mainMod, J, togglesplit, # dwindle
+        
+        # Move focus with mainMod + arrow keys
+        bind = $mainMod, left, movefocus, l
+        bind = $mainMod, right, movefocus, r
+        bind = $mainMod, up, movefocus, u
+        bind = $mainMod, down, movefocus, d
+        
+        # Switch workspaces with mainMod + [0-9]
+        bind = $mainMod, 1, workspace, 1
+        bind = $mainMod, 2, workspace, 2
+        bind = $mainMod, 3, workspace, 3
+        bind = $mainMod, 4, workspace, 4
+        bind = $mainMod, 5, workspace, 5
+        bind = $mainMod, 6, workspace, 6
+        bind = $mainMod, 7, workspace, 7
+        bind = $mainMod, 8, workspace, 8
+        bind = $mainMod, 9, workspace, 9
+        bind = $mainMod, 0, workspace, 10
+        
+        # Move active window to a workspace with mainMod + SHIFT + [0-9]
+        bind = $mainMod SHIFT, 1, movetoworkspace, 1
+        bind = $mainMod SHIFT, 2, movetoworkspace, 2
+        bind = $mainMod SHIFT, 3, movetoworkspace, 3
+        bind = $mainMod SHIFT, 4, movetoworkspace, 4
+        bind = $mainMod SHIFT, 5, movetoworkspace, 5
+        bind = $mainMod SHIFT, 6, movetoworkspace, 6
+        bind = $mainMod SHIFT, 7, movetoworkspace, 7
+        bind = $mainMod SHIFT, 8, movetoworkspace, 8
+        bind = $mainMod SHIFT, 9, movetoworkspace, 9
+        bind = $mainMod SHIFT, 0, movetoworkspace, 10
+        
+        # Example special workspace (scratchpad)
+        bind = $mainMod, S, togglespecialworkspace, magic
+        bind = $mainMod SHIFT, S, movetoworkspace, special:magic
+        
+        # Scroll through existing workspaces with mainMod + scroll
+        bind = $mainMod, mouse_down, workspace, e+1
+        bind = $mainMod, mouse_up, workspace, e-1
+        
+        # Move/resize windows with mainMod + LMB/RMB and dragging
+        bindm = $mainMod, mouse:272, movewindow
+        bindm = $mainMod, mouse:273, resizewindow
+      ''
+    }
   };
 }
