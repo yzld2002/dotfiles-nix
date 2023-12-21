@@ -17,6 +17,7 @@
     gpg.enable = true;
     direnv.enable = true;
     neovim.enable = true;
+    dev.enabel = true;
 
     # system
     packages.enable = true;

@@ -14,6 +14,7 @@
     ./gpg
     ./direnv
     ./neovim
+    ./dev
 
     # system
     ./packages
