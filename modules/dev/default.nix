@@ -15,7 +15,7 @@ in {
       ghc
       lua stylua
       kubectl kubie kubernetes-helm-wrapped argocd krew kompose
-    ]
+    ];
   };
 }
 
