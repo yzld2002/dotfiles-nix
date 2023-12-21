@@ -16,7 +16,7 @@
     git.enable = true;
     gpg.enable = true;
     direnv.enable = true;
-    neovim.enable = ture;
+    neovim.enable = true;
 
     # system
     packages.enable = true;
