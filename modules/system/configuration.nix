@@ -1,6 +1,7 @@
 { config, pkgs, inputs, ... }:
 
 {
+  imports = [ ./fonts ];
   # Remove unecessary preinstalled packages
   environment.defaultPackages = [ ];
 
