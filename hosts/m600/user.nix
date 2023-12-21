@@ -3,7 +3,6 @@
 {
   imports = [
     ../../modules/default.nix
-    ./secret.nix
   ];
   config.modules = {
     # gui
