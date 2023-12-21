@@ -1,7 +1,10 @@
 { config, lib, inputs, ...}:
 
 {
-  imports = [ ../../modules/default.nix ];
+  imports = [
+    ../../modules/default.nix
+    ./secret.nix
+  ];
   config.modules = {
     # gui
     hyprland.enable = true;
