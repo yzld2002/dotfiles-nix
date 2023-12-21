@@ -5,7 +5,6 @@
   imports = [
     # gui
     ./hyprland
-    ./hyprland/fonts
     ./kitty
     ./gui
 
