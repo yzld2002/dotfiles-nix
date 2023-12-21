@@ -21,9 +21,4 @@
     # system
     packages.enable = true;
   };
-  home.sessionVariables = {
-    PROMPT_EOL_MARK="⏎";
-    MANPAGER="sh -c 'col -bx | bat -l man -p'";
-    EDITOR="nvim";
-  };
 }
