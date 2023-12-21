@@ -4,7 +4,7 @@ with lib;
 let cfg = config.modules.dev;
 
 in {
-  options.modules.kitty = { enable = mkEnableOption "dev"; };
+  options.modules.dev = { enable = mkEnableOption "dev"; };
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       gcc gccStdenv
