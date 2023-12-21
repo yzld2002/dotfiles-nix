@@ -20,4 +20,10 @@
     # system
     packages.enable = true;
   };
+  home.sessionVariables = {
+    C_INCLUDE_PATH = "${pkgs.expat.dev}/include";
+    PROMPT_EOL_MARK="⏎";
+    MANPAGER="sh -c 'col -bx | bat -l man -p'";
+    EDITOR="nvim";
+  };
 }
