@@ -5,7 +5,7 @@ let cfg = config.modules.hyprland;
 
 
 in {
-  imports = [ ./fonts ./mako ./waybar ./wofi ];
+  imports = [ ./mako ./waybar ./wofi ];
   options.modules.hyprland= { enable = mkEnableOption "hyprland"; };
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
