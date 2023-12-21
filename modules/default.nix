@@ -13,6 +13,7 @@
     ./git
     ./gpg
     ./direnv
+    ./neovim
 
     # system
     ./packages
