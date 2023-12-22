@@ -8,6 +8,12 @@ in {
   imports = [ ./mako ./waybar ./wofi ];
   options.modules.hyprland= { enable = mkEnableOption "hyprland"; };
   config = mkIf cfg.enable {
+    home.pointerCursor = {
+      gtk.enable = true;
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 18;
+    };
     home.packages = with pkgs; [
       wl-clipboard mpc-cli pamixer
     ];
@@ -21,7 +27,6 @@ in {
         monitor=,preferred,auto,1.5
         
         exec-once = waybar & mako
-        exec-once = hyprctl setcursor 'Bibata-Original-Ice' 24
         
         # Source a file (multi-file configs)
         # source = ~/.config/hypr/myColors.conf
