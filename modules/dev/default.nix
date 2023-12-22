@@ -14,6 +14,7 @@ in {
       go
       ghc
       lua stylua
+      python3
       kubectl kubie kubernetes-helm-wrapped argocd krew kompose
     ];
   };
