@@ -9,7 +9,7 @@ in {
   options.modules.hyprland= { enable = mkEnableOption "hyprland"; };
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      wl-clipboard hyprland
+      wl-clipboard mpc-cli pamixer
     ];
     services.mpd.enable = true;
 
@@ -18,7 +18,7 @@ in {
       systemd.enable = true;
       extraConfig = ''
         # PA329CV for m600
-        monitor=,preferred,auto,1.5
+        monitor=,preferred,auto,2
         
         exec-once = waybar & mako
         
@@ -108,6 +108,8 @@ in {
         # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
         # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
         windowrulev2 = nomaximizerequest, class:.* # You'll probably like this.
+        windowrulev2 = stayfocused,class:(wofi)
+        windowrulev2 = noborder,class:(wofi)
         
         
         # See https://wiki.hyprland.org/Configuring/Keywords/ for more

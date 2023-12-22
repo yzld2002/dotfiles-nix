@@ -67,7 +67,7 @@
                  padding-right: 6px;
                  color: #7ebae4;
                }
-         #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal {
+         #mode, #clock, #memory, #temperature,#cpu,#mpd, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal {
                  padding-left: 10px;
                  padding-right: 10px;
                }
@@ -88,9 +88,6 @@
         /* #idle_inhibitor {
                  color: rgb(221, 182, 242);
                }*/
-         #custom-wall {
-                 color: rgb(221, 182, 242);
-            }
          #temperature {
                  color: rgb(150, 205, 251);
                }
@@ -130,9 +127,6 @@
          #mpd {
                  color: #c0caf5;
                }
-         #custom-cava-internal{
-                 font-family: "Hack Nerd Font" ;
-               }
       '';
       settings = [{
         "layer" = "top";
@@ -144,7 +138,6 @@
           #"idle_inhibitor"
           "custom/wall"
           "mpd"
-          "custom/cava-internal"
         ];
         modules-center = [
           "clock"
@@ -162,17 +155,6 @@
         "custom/launcher" = {
           "format" = " ";
           "on-click" = "pkill wofi || wofi";
-          "tooltip" = false;
-        };
-        "custom/wall" = {
-          "on-click" = "wallpaper_random";
-          "on-click-middle" = "default_wall";
-          "on-click-right" = "killall dynamic_wallpaper || dynamic_wallpaper &";
-          "format" = " 󰠖 ";
-          "tooltip" = false;
-        };
-        "custom/cava-internal" = {
-          "exec" = "sleep 1s && cava-internal";
           "tooltip" = false;
         };
         "hyprland/workspaces" = {
@@ -223,7 +205,7 @@
           "format" = "{:%I:%M %p  %A %b %d}";
           "tooltip" = true;
           /* "tooltip-format"= "{=%A; %d %B %Y}\n<tt>{calendar}</tt>" */
-          "tooltip-format" = "上午：高数\n下午：Ps\n晚上：Golang\n<tt>{calendar}</tt>";
+          "tooltip-format" = "<tt>{calendar}</tt>";
         };
         "memory" = {
           "interval" = 1;
@@ -259,8 +241,8 @@
           "tooltip" = false;
         };
         "temperature" = {
-          # "hwmon-path"= "${env:HWMON_PATH}";
-          #"critical-threshold"= 80;
+          "hwmon-path"= "${env:HWMON_PATH}";
+          "critical-threshold"= 80;
           "tooltip" = false;
           "format" = " {temperatureC}°C";
         };
