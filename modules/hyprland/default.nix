@@ -18,15 +18,16 @@ in {
       systemd.enable = true;
       extraConfig = ''
         # PA329CV for m600
-        monitor=,preferred,auto,2
+        monitor=,preferred,auto,1.5
         
         exec-once = waybar & mako
+        exec-once = hyprctl setcursor 'Bibata-Original-Ice' 24
         
         # Source a file (multi-file configs)
         # source = ~/.config/hypr/myColors.conf
         
         $terminal = kitty
-        $menu = wofi --show drun
+        $menu = wofi --normal-window drun
         
         env = XCURSOR_SIZE,24
         env = QT_QPA_PLATFORMTHEME,qt5ct # change to qt6ct if you have that
