@@ -34,7 +34,7 @@ in {
         $terminal = kitty
         $menu = wofi --normal-window drun
         
-        env = XCURSOR_SIZE,24
+        env = XCURSOR_SIZE,18
         env = QT_QPA_PLATFORMTHEME,qt5ct # change to qt6ct if you have that
         
         # unscale XWayland
