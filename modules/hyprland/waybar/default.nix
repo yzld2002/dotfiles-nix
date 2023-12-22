@@ -241,7 +241,7 @@
           "tooltip" = false;
         };
         "temperature" = {
-          "hwmon-path"= "${env:HWMON_PATH}";
+          "hwmon-path"= "/sys/devices/pci0000:00/0000:00:18.3/hwmon";
           "critical-threshold"= 80;
           "tooltip" = false;
           "format" = " {temperatureC}°C";
