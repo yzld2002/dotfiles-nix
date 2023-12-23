@@ -68,7 +68,7 @@
       <test qual="any" name="family">
         <string>sans-serif</string></test>
       <edit name="family" mode="prepend" binding="same">
-        <string>Sarasa Mono SC</string>
+        <string>Sarasa Gothic SC</string>
       </edit>
     </match>
 
@@ -97,10 +97,10 @@
     <alias>
       <family>sans-serif</family>
       <prefer>
-        <family>Sarasa Mono SC</family>
-        <family>Sarasa Mono TC</family>
-        <family>Sarasa Mono J</family>
-        <family>Sarasa Mono K</family>
+        <family>Sarasa Gothic SC</family>
+        <family>Sarasa Gothic TC</family>
+        <family>Sarasa Gothic J</family>
+        <family>Sarasa Gothic K</family>
         <family>Twitter Color Emoji</family>
       </prefer>
     </alias>
