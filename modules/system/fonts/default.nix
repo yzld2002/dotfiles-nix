@@ -58,7 +58,7 @@
       </test>
       <edit mode="prepend" name="family">
         <!-- 更改下一行即可, 以下同理 -->
-        <string>Sarasa UI SC</string>
+        <string>Sarasa Mono SC</string>
       </edit>
     </match>
 
@@ -68,7 +68,7 @@
       <test qual="any" name="family">
         <string>sans-serif</string></test>
       <edit name="family" mode="prepend" binding="same">
-        <string>Sarasa UI SC</string>
+        <string>Sarasa Mono SC</string>
       </edit>
     </match>
 
@@ -97,10 +97,10 @@
     <alias>
       <family>sans-serif</family>
       <prefer>
-        <family>Sarasa UI SC</family>
-        <family>Sarasa UI TC</family>
-        <family>Sarasa UI J</family>
-        <family>Sarasa UI K</family>
+        <family>Sarasa Mono SC</family>
+        <family>Sarasa Mono TC</family>
+        <family>Sarasa Mono J</family>
+        <family>Sarasa Mono K</family>
         <family>Twitter Color Emoji</family>
       </prefer>
     </alias>
