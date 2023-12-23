@@ -16,3 +16,5 @@ Useful links to learn the nix:
 
 1. https://zhuanlan.zhihu.com/p/627059922
 2. https://szclsya.me/zh-cn/posts/fonts/linux-config-guide/
+3. https://catcat.cc/post/2021-03-07/
+4. https://catcat.cc/post/2020-10-31/
