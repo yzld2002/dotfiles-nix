@@ -90,7 +90,7 @@
         <string>monospace</string>
       </test>
       <edit name="family" mode="prepend" binding="same">
-        <string>CaskaydiaCoveNerdFont</string>
+        <string>CaskaydiaCove Nerd Font Mono</string>
       </edit>
     </match>
     <!-- Fallback fonts preference order -->
@@ -117,10 +117,8 @@
     <alias>
       <family>monospace</family>
       <prefer>
-        <family>Sarasa Term SC</family>
-        <family>Sarasa Term TC</family>
-        <family>Sarasa Term J</family>
-        <family>Sarasa Term K</family>
+        <family>CaskaydiaCove Nerd Font Mono</family>
+        <family>JetBrainsMono Nerd Font Mono</family>
         <family>Twitter Color Emoji</family>
       </prefer>
     </alias>
