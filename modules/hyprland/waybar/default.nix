@@ -241,6 +241,7 @@
           "critical-threshold"= 80;
           "tooltip" = false;
           "format" = " {temperatureC}°C";
+          "interval" = 2;
         };
         "custom/powermenu" = {
           "format" = "";
