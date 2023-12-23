@@ -136,7 +136,6 @@
           "hyprland/workspaces"
           "temperature"
           #"idle_inhibitor"
-          "custom/wall"
           "mpd"
         ];
         modules-center = [
@@ -154,14 +153,11 @@
         ];
         "custom/launcher" = {
           "format" = " ";
-          "on-click" = "pkill wofi || wofi";
           "tooltip" = false;
         };
         "hyprland/workspaces" = {
           "format" = "{icon}";
           "on-click" = "activate";
-          # "on-scroll-up" = "hyprctl dispatch workspace e+1";
-          # "on-scroll-down" = "hyprctl dispatch workspace e-1";
         };
         "idle_inhibitor" = {
           "format" = "{icon}";
@@ -242,13 +238,14 @@
         };
         "temperature" = {
           "hwmon-path"= "/sys/devices/pci0000:00/0000:00:18.3/hwmon";
+          "input-filename" = "temp1_input";
           "critical-threshold"= 80;
           "tooltip" = false;
           "format" = " {temperatureC}°C";
         };
         "custom/powermenu" = {
           "format" = "";
-          "on-click" = "pkill wofi || wofi";
+          "on-click" = "swaylock";
           "tooltip" = false;
         };
         "tray" = {

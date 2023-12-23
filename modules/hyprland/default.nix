@@ -15,7 +15,7 @@ in {
       size = 18;
     };
     home.packages = with pkgs; [
-      wl-clipboard mpc-cli pamixer
+      wl-clipboard mpc-cli pamixer swaylock
     ];
     services.mpd.enable = true;
 
