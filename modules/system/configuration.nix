@@ -24,6 +24,8 @@
     };
   };
 
+  programs.dconf.enable = true;
+
   # Nix settings, auto cleanup and enable flakes
   nix = {
     settings.auto-optimise-store = true;
