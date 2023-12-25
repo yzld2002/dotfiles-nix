@@ -8,7 +8,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       google-chrome foliate
-      jetbrains.idea-community
+      jetbrains.idea-community jetbrains.jdk
       android-studio
     ];
   };
