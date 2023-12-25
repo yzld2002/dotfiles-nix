@@ -90,6 +90,7 @@
     EDITOR = "nvim";
     DIRENV_LOG_FORMAT = "";
     DISABLE_QT5_COMPAT = "0";
+    _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on";
   };
 
   environment.sessionVariables = {
