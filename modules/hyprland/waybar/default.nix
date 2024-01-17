@@ -5,7 +5,7 @@
       enable = true;
       style = ''
                * {
-                 font-family: "JetBrainsMono Nerd Font";
+                 font-family: "CaskaydiaCoveNerdFont";
                  font-size: 12pt;
                  font-weight: bold;
                  border-radius: 0px;
