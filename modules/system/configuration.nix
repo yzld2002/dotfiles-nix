@@ -56,6 +56,13 @@
   # Set up locales (timezone and keyboard layout)
   time.timeZone = "Asia/Shanghai";
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+      fcitx5-nord
+    ];
+  };
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
