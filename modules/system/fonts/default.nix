@@ -68,7 +68,7 @@
       <test qual="any" name="family">
         <string>sans-serif</string></test>
       <edit name="family" mode="prepend" binding="same">
-        <string>Sarasa Gothic SC</string>
+        <string>NotoSans Nerd Font</string>
       </edit>
     </match>
 
@@ -79,7 +79,7 @@
         <string>serif</string>
       </test>
       <edit name="family" mode="prepend" binding="same">
-        <string>Sarasa Mono Slab SC</string>
+        <string>NotoSerif Nerd Font</string>
       </edit>
     </match>
 
