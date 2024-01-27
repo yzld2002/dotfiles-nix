@@ -32,8 +32,6 @@
         ./modules/system/configuration.nix
         # Hardware config (bootloader, kernel modules, filesystems, etc)
         (./. + "/hosts/${hostname}/hardware-configuration.nix")
-        # Per system special config
-        (./. + "/hosts/${hostname}/system.nix")
         home-manager.nixosModules.home-manager
         {
           home-manager = {

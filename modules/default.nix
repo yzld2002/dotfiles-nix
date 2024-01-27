@@ -4,7 +4,7 @@
   home.stateVersion = "21.03";
   imports = [
     # gui
-    ./hyprland
+    ./kde
     ./kitty
     ./gui
 
