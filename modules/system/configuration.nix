@@ -144,6 +144,29 @@
       PasswordAuthentication = false;
     };
   };
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+  # Enable the KDE Plasma Desktop Environment.
+  services.xserver.displayManager = {
+    # Auto loging crash
+    # sddm.enable = true;
+    lightdm.enable = true;
+
+    # Enable automatic login for the user.
+    autoLogin.enable = true;
+    autoLogin.user = "yzld2002";
+
+    defaultSession = "plasmawayland";
+  };
+
+  services.xserver.desktopManager.plasma5.enable = true;
+
+  environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+    elisa
+    khelpcenter
+    konsole
+  ];
 
   # Do not touch
   system.stateVersion = "20.09";
