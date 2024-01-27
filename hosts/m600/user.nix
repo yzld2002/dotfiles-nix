@@ -6,7 +6,7 @@
   ];
   config.modules = {
     # gui
-    hyprland.enable = true;
+    kde.enable = true;
     kitty.enable = true;
     gui.enable = true;
 
