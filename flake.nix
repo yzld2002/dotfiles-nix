@@ -19,31 +19,37 @@
   # All outputs for the system (configs)
   outputs = { self,nixpkgs, home-manager, ... }@inputs: 
     let
-    # This lets us reuse the code to "create" a system
-    # Credits go to sioodmy on this one!
-    # https://github.com/sioodmy/dotfiles/blob/main/flake.nix
+    inherit (self) outputs;
     mkSystem = pkgs: system: hostname:
-    pkgs.lib.nixosSystem {
-      system = system;
-      modules = [
-        { nixpkgs.config.allowUnfree = true; }
-        { networking.hostName = hostname; }
-        # General configuration (users, networking, sound, etc)
-        ./modules/system/configuration.nix
-        # Hardware config (bootloader, kernel modules, filesystems, etc)
-        (./. + "/hosts/${hostname}/hardware-configuration.nix")
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useUserPackages = true;
-            useGlobalPkgs = true;
-            extraSpecialArgs = { inherit inputs; };
-            users.yzld2002 = (./. + "/hosts/${hostname}/user.nix");
-          };
-        }
-      ];
-      specialArgs = { inherit inputs; };
-    };
+      let
+        systemconfig = ./hosts/${name}/default.nix;
+        hardwareconfig = ./hosts/${name}/hardware-configuration.nix;
+        homeconfig = ./hosts/${name}/home.nix;
+      in
+        pkgs.lib.nixosSystem {
+          system = system;
+          modules = [
+            systemconfig
+            hardwareconfig
+            ./nixos/system.nix
+            { nixpkgs.config.allowUnfree = true; }
+            { networking.hostName = hostname; }
+            # General configuration (users, networking, sound, etc)
+            ./modules/system/configuration.nix
+            # Hardware config (bootloader, kernel modules, filesystems, etc)
+            (./. + "/hosts/${hostname}/hardware-configuration.nix")
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useUserPackages = true;
+                useGlobalPkgs = true;
+                extraSpecialArgs = { inherit inputs; };
+                users.yzld2002 = (./. + "/hosts/${hostname}/user.nix");
+              };
+            }
+          ];
+          specialArgs = { inherit inputs; };
+        };
 
   in {
     nixosConfigurations = {
