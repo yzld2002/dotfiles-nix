@@ -10,15 +10,15 @@
       clickItemTo = "select";
       theme = "Materia-Color";
       iconTheme = "Nordic-darker";
-      wallpaper = ../assets/wallpaper2.jpg;
-      colorScheme = "MateriaDark";
-      lookAndFeel = "com.github.varlesh.materia-dark";
+      # wallpaper = ../assets/wallpaper2.jpg;
+      colorScheme = "Nordic-bluish";
+      # lookAndFeel = "com.github.varlesh.materia-dark";
     };
 
     panels = [
       {
         location = "top";
-        height = 41;
+        height = 35;
         widgets = [
           {
             name = "org.kde.plasma.kickoff";
@@ -29,7 +29,7 @@
             name = "org.kde.plasma.icontasks";
             config = {
               General.launchers = [
-                "applications:chrome-stable.desktop"
+                "applications:google-chrome.desktop"
                 "applications:kitty.desktop"
                 "applications:org.kde.dolphin.desktop"
               ];
