@@ -67,7 +67,7 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
-              home-manager.users.martijn = import homeconfig;
+              home-manager.users.yzld2002 = import homeconfig;
               home-manager.extraSpecialArgs = {inherit inputs outputs;};
             }
           ];
@@ -80,23 +80,7 @@
 
     overlays = import ./overlays {inherit inputs;};
 
-    nixosConfigurations.glassdoor = mkSystem "glassdoor" {
-      system = "x86_64-linux";
-    };
-
-    nixosConfigurations.hadouken = mkSystem "hadouken" {
-      system = "x86_64-linux";
-    };
-
-    nixosConfigurations.suydersee = mkSystem "suydersee" {
-      system = "x86_64-linux";
-    };
-
-    nixosConfigurations.lapdance = mkSystem "lapdance" {
-      system = "x86_64-linux";
-    };
-
-    nixosConfigurations.testbed = mkSystem "testbed" {
+    nixosConfigurations.glassdoor = mkSystem "m600" {
       system = "x86_64-linux";
     };
   };
