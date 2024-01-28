@@ -74,6 +74,15 @@ in {
       layout = "us";
     };
 
+    # input method
+    i18n.inputMethod = {
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [
+        fcitx5-rime
+        fcitx5-nord
+      ];
+    };
+
     # Enable CUPS to print documents.
     services.printing.enable = true;
 
