@@ -1,50 +1,83 @@
 {
-  description = "NixOS configuration";
+  description = "NixOS Configuration";
 
-  # All inputs for the system
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Home manager kde
+    plasma-manager = {
+      url = "github:pjones/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    agenix.url = "github:ryantm/agenix";
+
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  # All outputs for the system (configs)
-  outputs = { self,nixpkgs, home-manager, ... }@inputs: 
-    let
-    # This lets us reuse the code to "create" a system
-    # Credits go to sioodmy on this one!
-    # https://github.com/sioodmy/dotfiles/blob/main/flake.nix
-    mkSystem = pkgs: system: hostname:
-    pkgs.lib.nixosSystem {
-      system = system;
-      modules = [
-        { nixpkgs.config.allowUnfree = true; }
-        { networking.hostName = hostname; }
-        # General configuration (users, networking, sound, etc)
-        ./modules/system/configuration.nix
-        # Hardware config (bootloader, kernel modules, filesystems, etc)
-        (./. + "/hosts/${hostname}/hardware-configuration.nix")
-        # Per system special config
-        (./. + "/hosts/${hostname}/system.nix")
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useUserPackages = true;
-            useGlobalPkgs = true;
-            extraSpecialArgs = { inherit inputs; };
-            users.yzld2002 = (./. + "/hosts/${hostname}/user.nix");
-          };
-        }
-      ];
-      specialArgs = { inherit inputs; };
-    };
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    agenix,
+    nix-index-database,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    systems = [
+      "x86_64-linux"
+      "aarch64-linux"
+    ];
+    # This is a function that generates an attribute by calling a function you
+    # pass to it, with each system as an argument
+    forAllSystems = nixpkgs.lib.genAttrs systems;
 
+    # Abstract generating system code here
+    mkSystem = name: {system}: let
+      # The config files for this system.
+      systemconfig = ./hosts/${name}/default.nix;
+      hardwareconfig = ./hosts/${name}/hardware.nix;
+      homeconfig = ./hosts/${name}/home.nix;
+    in
+      with nixpkgs.lib;
+        nixosSystem {
+          specialArgs = {inherit inputs outputs;};
+          modules = [
+            systemconfig
+            hardwareconfig
+
+            # Base NixOS configuration
+            ./nixos/system.nix
+
+            # Secret management
+            agenix.nixosModules.default
+            {
+              environment.systemPackages = [agenix.packages.${system}.default];
+            }
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useUserPackages = true;
+              home-manager.users.yzld2002 = import homeconfig;
+              home-manager.extraSpecialArgs = {inherit inputs outputs;};
+            }
+          ];
+        };
   in {
-    nixosConfigurations = {
-      m600 = mkSystem inputs.nixpkgs "x86_64-linux" "m600";
+    # Formatter for your nix files, available through 'nix fmt'
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    nixosConfigurations.m600 = mkSystem "m600" {
+      system = "x86_64-linux";
     };
   };
 }
