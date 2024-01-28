@@ -6,30 +6,23 @@
 }: {
   imports = [
     ./modules/virtualization.nix
-    ./modules/syncthing.nix
-    ./modules/resillio.nix
     ./modules/openssh.nix
-    ./modules/secrets.nix
-    ./modules/borg.nix
     ./modules/gpg.nix
     ./modules/kde.nix
-    ./modules/smb.nix
+    ./modules/font.nix
   ];
 
   # User
-  users.users.martijn = {
+  users.users.yzld2002 = {
     isNormalUser = true;
-    description = "Martijn Boers";
-    extraGroups = ["networkmanager" "wheel"];
+    description = "Zhichao Lin";
+    extraGroups = ["networkmanager" "wheel" "input"];
     shell = pkgs.zsh;
     useDefaultShell = true;
-    hashedPasswordFile = config.age.secrets.password.path;
-    openssh.authorizedKeys.keyFiles = [
-      ./keys/glassdoor.pub
-      ./keys/phone.pub
-    ];
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG3dHygJrJv/ZqC1Y8NhpghQK4hMTuacdJhcXtvfG7dN yzld2002@gmail.com" ];
   };
 
+  environment.defaultPackages = [];
   # Global packages
   environment.systemPackages = with pkgs; [
     # for gpg
@@ -40,7 +33,6 @@
     zip
     unzip
     p7zip
-    borgbackup # backups
 
     # utils
     ripgrep # recursively searches directories for a regex pattern
@@ -78,6 +70,8 @@
     lsof # list open files
 
     # system tools
+    acpi
+    tlp
     lm_sensors # for `sensors` command
     ethtool
     pciutils # lspci
@@ -85,32 +79,32 @@
     cachix # community binary caches
   ];
 
-  # Auto updates flakes
-  system.autoUpgrade = {
-    enable = true;
-    dates = "daily";
-    flake = "/home/martijn/Nix";
-    allowReboot = true;
-    rebootWindow = {
-      lower = "01:00";
-      upper = "05:00";
+  # Nix settings, auto cleanup and enable flakes
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      allowed-users = [ "yzld2002" ];
+      experimental-features = ["nix-command" "flakes"];
     };
-    flags = [
-      "--impure"
-      "-L" # print build logs
-    ];
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
   };
 
-  # Flakes
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  # Collect nix store garbage and optimise daily.
-  nix.gc.automatic = true;
-  nix.gc.options = "--delete-older-than 30d";
-  nix.optimise.automatic = true;
-
   # Enable networking
-  networking.networkmanager.enable = true;
+    # Set up networking and secure it
+  networking = {
+    networkmanager.enable = true;
+    wireless.iwd.enable = true;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 443 80 ];
+      allowedUDPPorts = [ 443 80 ];
+      allowPing = true;
+    };
+  };
 
   # misc
   programs.zsh.enable = true;
@@ -118,74 +112,36 @@
   # Default env variables
   environment.sessionVariables = {
     EDITOR = "nvim";
-    OPENAI_API_KEY = config.age.secrets.openai.path;
+    NIXOS_OZONE_WL = "1";
   };
 
-  # SMB network discovery
-  services.gvfs.enable = true;
-
-  # Enable firewall by default
-  networking.firewall = {
-    enable = true;
-    # Samba sharing discovery
-    extraCommands = ''
-      iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
-    '';
-
-    # Required for tailscale
-    checkReversePath = "loose";
-    trustedInterfaces = ["tailscale0"];
+  # Boot settings: clean /tmp/, latest kernel and enable bootloader
+  boot = {
+    tmp.cleanOnBoot = true;
+    loader = {
+      systemd-boot.enable = true;
+      systemd-boot.editor = false;
+      efi.canTouchEfiVariables = true;
+      timeout = 5;
+    };
   };
 
-  # Setup tailscale default on all machines
-  services.tailscale = {
-    enable = true;
-    openFirewall = true;
-  };
-
-  # Self signed ca for all the internal tailscale services
-  security.pki.certificateFiles = [
-    ./keys/hadouken-ca.pem
-    ./keys/zee-ca.pem
-  ];
-
-  # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
-
-  networking.nameservers = ["9.9.9.9" "192.168.1.156"];
-
-  # Select internationalisation properties.
+  # Set up locales (timezone and keyboard layout)
+  time.timeZone = "Asia/Shanghai";
   i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "nl_NL.UTF-8";
-    LC_IDENTIFICATION = "nl_NL.UTF-8";
-    LC_MEASUREMENT = "nl_NL.UTF-8";
-    LC_MONETARY = "nl_NL.UTF-8";
-    LC_NAME = "nl_NL.UTF-8";
-    LC_NUMERIC = "nl_NL.UTF-8";
-    LC_PAPER = "nl_NL.UTF-8";
-    LC_TELEPHONE = "nl_NL.UTF-8";
-    LC_TIME = "nl_NL.UTF-8";
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+      fcitx5-nord
+    ];
   };
 
   nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-    ];
-
     config = {
       allowUnfree = true;
     };
   };
-
-  # Keep journal log max 20gigs
-  services.journald.extraConfig = ''
-    SystemMaxUse=20G
-    SystemKeepFree=100G
-  '';
 
   # Don't ask for sudo too often
   security.sudo.extraConfig = ''

@@ -53,7 +53,7 @@ in {
 
       # Enable automatic login for the user.
       autoLogin.enable = true;
-      autoLogin.user = "martijn";
+      autoLogin.user = "yzld2002";
 
       defaultSession =
         if cfg.wayland
@@ -69,13 +69,9 @@ in {
       konsole
     ];
 
-    # Access QMK without sudo
-    hardware.keyboard.qmk.enable = true;
-
     # Configure keymap in X11
     services.xserver = {
       layout = "us";
-      xkbVariant = "";
     };
 
     # Enable CUPS to print documents.

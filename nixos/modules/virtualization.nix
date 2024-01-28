@@ -14,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     # Docker configuration
     virtualisation.docker.enable = true;
-    users.users.martijn.extraGroups = ["docker" "libvirtd"];
+    users.users.yzld2002.extraGroups = ["docker" "libvirtd"];
 
     # QEMU virtualization
     virtualisation = {

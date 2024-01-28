@@ -17,11 +17,11 @@ in {
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
       settings.PermitRootLogin = "no";
-      ports = [666];
+      ports = [22];
       openFirewall = true;
       hostKeys = [
         {
-          path = "/home/martijn/.ssh/id_ed25519";
+          path = "/home/yzld2002/.ssh/id_ed25519";
           type = "ed25519";
         }
       ];
