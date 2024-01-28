@@ -23,6 +23,7 @@
   imports = [
     ./modules/ranger.nix
     ./modules/zsh.nix
+    ./modules/neovim
 
     # Packaged home manager modules
     # inputs.nixvim.homeManagerModules.nixvim
