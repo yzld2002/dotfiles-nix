@@ -29,13 +29,9 @@
             name = "org.kde.plasma.icontasks";
             config = {
               General.launchers = [
-                "applications:firefox.desktop"
+                "applications:chrome-stable.desktop"
                 "applications:kitty.desktop"
                 "applications:org.kde.dolphin.desktop"
-                "applications:pycharm-community.desktop"
-                "applications:webstorm.desktop"
-                "applications:obsidian.desktop"
-                "applications:sublime_merge.desktop"
               ];
             };
           }
