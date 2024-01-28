@@ -14,15 +14,18 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      jetbrains.pycharm-community
-      jetbrains.webstorm
-      sublime-merge
-      awscli2
-      slack
-      mongodb-compass
-      nodejs_18 # global for work, move to project
-      python311Full # move to projects
-      httpie-desktop
+      jetbrains.idea-community
+      android-studio
+
+      gcc gccStdenv
+      tree-sitter
+      nodejs nodePackages.eslint
+      rustc cargo clippy rustfmt
+      go
+      ghc
+      lua stylua
+      python3
+      kubectl kubie kubernetes-helm-wrapped argocd krew kompose
     ];
   };
 }

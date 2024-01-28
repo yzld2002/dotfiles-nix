@@ -6,17 +6,11 @@
   lib,
   ...
 }: {
-  home.username = "martijn";
-  home.homeDirectory = "/home/martijn";
+  home.username = "yzld2002";
+  home.homeDirectory = "/home/yzld2002";
   home.stateVersion = "23.11";
 
   nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-    ];
-
     config = {
       allowUnfree = true;
       # For Obsidian
@@ -28,12 +22,10 @@
 
   imports = [
     ./modules/ranger.nix
-    ./modules/neovim.nix
     ./modules/zsh.nix
-    ./modules/atuin.nix
 
     # Packaged home manager modules
-    inputs.nixvim.homeManagerModules.nixvim
+    # inputs.nixvim.homeManagerModules.nixvim
 
     # quickly lookup and run programs
     inputs.nix-index-database.hmModules.nix-index
@@ -52,27 +44,13 @@
   # Global user level packages
   home.packages = with pkgs; [
     # shell
-    zsh-powerlevel10k
-    zoxide
     fzf # A command-line fuzzy finder
     fd # easier find
     direnv # used for .envrc files
     ranger
     neofetch
-    thefuck
-    trash-cli
+    fastfetch
     lsd # fance ls
-
-    # fonts
-    meslo-lgs-nf
-    roboto
-    jetbrains-mono
-    nerdfonts
-
-    # tools
-    distrobox # run any linux distro
-    mods # ai for cli
-    glow # cli markdown viewer
   ];
 
   # Let nix-index handle command-not-found
@@ -85,17 +63,16 @@
 
   programs.git = {
     enable = true;
-    userName = "Martijn Boers";
-    userEmail = "martijn@plebian.nl";
-    signing = {
-      key = "FDC7B670BF26B101";
-      signByDefault = true;
-    };
+    userName = "yzld2002";
+    userEmail = "yzld2002@gmail.com";
+    diff-so-fancy.enable = true;
     extraConfig = {
       pull.rebase = "true";
       init.defaultBranch = "main";
     };
   };
+  programs.lazygit.enable = true;
+  programs.gh.enable = true;
 
   programs.ranger = {
     enable = true;
