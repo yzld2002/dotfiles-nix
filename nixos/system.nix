@@ -113,6 +113,9 @@
   environment.sessionVariables = {
     EDITOR = "nvim";
     NIXOS_OZONE_WL = "1";
+    GTK_IM_MODULE="fcitx";
+    QT_IM_MODULE="fcitx";
+    XMODIFIERS="@im=fcitx";
   };
 
   # Boot settings: clean /tmp/, latest kernel and enable bootloader
