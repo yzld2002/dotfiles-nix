@@ -73,14 +73,10 @@
           ];
         };
   in {
-    # Custom packages, accessible through 'nix build', 'nix shell', etc
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     # Formatter for your nix files, available through 'nix fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    overlays = import ./overlays {inherit inputs;};
-
-    nixosConfigurations.glassdoor = mkSystem "m600" {
+    nixosConfigurations.m600 = mkSystem "m600" {
       system = "x86_64-linux";
     };
   };
