@@ -97,11 +97,13 @@
     # Set up networking and secure it
   networking = {
     networkmanager.enable = true;
-    wireless.iwd.enable = true;
+    networkmanager.wifi.backend = "iwd";
     firewall = {
       enable = true;
       allowedTCPPorts = [ 443 80 ];
       allowedUDPPorts = [ 443 80 ];
+      allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+      allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
       allowPing = true;
     };
   };
