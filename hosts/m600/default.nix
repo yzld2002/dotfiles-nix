@@ -5,6 +5,12 @@
   ...
 }: {
   networking.hostName = "m600";
+  networking.interfaces.wlan0.ipv4.addresses = [
+    {
+      address = "192.168.50.20";
+      prefixLength = 24;
+    }
+  ];
 
   hosts.desktop = {
     enable = true;
@@ -31,4 +37,5 @@
 
   # Docker + QEMU
   hosts.virtualization.enable = true;
+  hosts.openssh.enable = true;
 }
