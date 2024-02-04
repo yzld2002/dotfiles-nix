@@ -94,7 +94,7 @@
   };
 
   # Enable networking
-    # Set up networking and secure it
+  # Set up networking and secure it
   networking = {
     networkmanager.enable = true;
     networkmanager.wifi.backend = "iwd";
