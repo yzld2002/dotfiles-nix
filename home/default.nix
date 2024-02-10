@@ -39,6 +39,7 @@
     # profiles based on type of computer usage
     ./profiles/desktop.nix
     ./profiles/work.nix
+    ./profiles/gui-dev.nix
   ];
 
   # Global user level packages

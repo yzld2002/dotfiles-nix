@@ -14,9 +14,6 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      jetbrains.idea-community
-      android-studio
-
       gcc gccStdenv
       tree-sitter
       nodejs nodePackages.eslint
