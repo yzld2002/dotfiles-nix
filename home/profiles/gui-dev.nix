@@ -8,7 +8,7 @@
 with lib; let
   cfg = config.hosts.gui-dev;
 in {
-  options.hosts.work = {
+  options.hosts.gui-dev = {
     enable = mkEnableOption "Enable packages and configuration specfic to desktop IDEs";
   };
 
