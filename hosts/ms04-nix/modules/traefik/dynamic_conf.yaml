@@ -1,0 +1,48 @@
+http:
+  routers:
+    dashboard:
+      rule: "Host(`traefik.yzld2002.cn`)"
+      entryPoints: "https"
+      service: "api@internal"
+    lede:
+      rule: "Host(`lede.yzld2002.cn`)"
+      entryPoints: "https"
+      service: lede-service
+    switch:
+      rule: "Host(`switch.yzld2002.cn`)"
+      entryPoints: "https"
+      service: switch-service
+    m6g:
+      rule: "Host(`m6g.yzld2002.cn`)"
+      entryPoints: "https"
+      service: m6g-service
+    pve:
+      rule: "Host(`pve.yzld2002.cn`)"
+      entryPoints: "https"
+      service: pve-service
+    dsm:
+      rule: "Host(`dsm.yzld2002.cn`)"
+      entryPoints: "https"
+      service: dsm-service
+
+  services:
+    lede-service:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.50.1"
+    switch-service:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.50.2"
+    m6g-service:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.50.11"
+    pve-service:
+      loadBalancer:
+        servers:
+          - url: "https://192.168.50.3:8006"
+    dsm-service:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.50.5:5000"
