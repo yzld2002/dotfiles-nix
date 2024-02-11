@@ -79,5 +79,8 @@
     nixosConfigurations.m600 = mkSystem "m600" {
       system = "x86_64-linux";
     };
+    nixosConfigurations.ms04-nix = mkSystem "ms04-nix" {
+      system = "x86_64-linux";
+    };
   };
 }
