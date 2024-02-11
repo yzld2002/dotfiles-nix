@@ -67,5 +67,6 @@
 
   # Docker + QEMU
   hosts.virtualization.enable = true;
+  hosts.docker.enable = true;
   hosts.openssh.enable = true;
 }
