@@ -11,12 +11,9 @@ in {
     enable = mkEnableOption "Traefik reverse proxy";
   }; 
   config = mkIf cfg.enable {
-    systemd.services.traefik.environment = {
-      TENCENTCLOUD_SECRET_ID = "AKIDHVGGCzdAd6Wmu3Dc2KpHZjnFYfZIzZy9";
-      TENCENTCLOUD_SECRET_KEY = "${config.age.secrets.dnspod.path}";
-    };
     services.traefik = {
       enable = true;
+      environmentFiles = [ "${config.age.secrets.dnspod.path}" ];
       staticConfigOptions = {
         api = {
           dashboard = true;
