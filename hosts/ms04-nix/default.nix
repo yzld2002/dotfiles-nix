@@ -17,7 +17,7 @@
       bond0 = {
         interfaces = [ "enp1s0" "enp2s0" ];
         driverOptions = {
-          mode = "active-backup";
+          mode = "802.3ad";
         };
       };
     };
@@ -27,6 +27,9 @@
         prefixLength = 24;
       }
     ];
+  };
+  environment.sessionVariables = {
+    TERM = "xterm";
   };
   # Enable secrets + append hosts
   # hosts.secrets.hosts = true;

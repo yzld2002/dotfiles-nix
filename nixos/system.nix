@@ -117,6 +117,7 @@
   environment.sessionVariables = {
     EDITOR = "nvim";
     NIXOS_OZONE_WL = "1";
+    TERM = "xterm";
   };
 
   # Boot settings: clean /tmp/, latest kernel and enable bootloader
