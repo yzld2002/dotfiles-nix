@@ -28,6 +28,12 @@
       }
     ];
   };
+
+  imports = [
+    ./modules/traefik
+  ];
+
+  hosts.traefik.enable = true;
   # Enable secrets + append hosts
   # hosts.secrets.hosts = true;
 
