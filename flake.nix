@@ -14,10 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     agenix.url = "github:ryantm/agenix";
 
     nix-index-database.url = "github:Mic92/nix-index-database";
