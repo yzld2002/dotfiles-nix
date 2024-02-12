@@ -58,6 +58,7 @@
     wget
     config.services.headscale.package
     openssl # for CA work
+    gnumake
 
     # samba
     cifs-utils
