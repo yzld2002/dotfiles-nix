@@ -1,4 +1,4 @@
-{...}:
+{ config }:
 let
   cfg = config.hosts.desktop;
 in {
