@@ -1,6 +1,6 @@
-{ lib, osConfig, ... }: 
+{ lib, config, ... }: 
 with lib; let
-  cfg = osConfig.hosts.desktop;
+  cfg = config.hosts.desktop;
 in {
   config = mkIf cfg.enable {
     programs.kitty = {
