@@ -7,13 +7,17 @@
   networking = {
     hostName = "ms04-nix";
     networkmanager.enable = lib.mkForce false; 
+    nameservers = [ "192.168.50.1" ];
+    defaultGateway = {
+      address = "192.168.50.1";
+      interface = "bond0";
+    };
     bonds = 
     {
       bond0 = {
         interfaces = [ "enp1s0" "enp2s0" ];
         driverOptions = {
-          miimon = "100";
-          mode = "802.3ad";
+          mode = "active-backup";
         };
       };
     };
@@ -32,7 +36,6 @@
   #   ipaddress = "100.64.0.1";
   # };
 
-  hosts.desktop.enable = false;
   # Support gpg for git signing
   hosts.gpg.enable = true;
 

@@ -4,6 +4,5 @@
   ];
 
   # Enable profiles
-  hosts.desktop.enable = true;
   hosts.work.enable = true;
 }
