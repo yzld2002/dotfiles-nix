@@ -1,5 +1,5 @@
 {...}:
-with lib; let
+let
   cfg = config.hosts.desktop;
 in {
   config = mkIf cfg.enable {
