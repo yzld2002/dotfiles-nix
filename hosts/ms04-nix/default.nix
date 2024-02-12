@@ -37,6 +37,7 @@
   #   ipaddress = "100.64.0.1";
   # };
 
+  hosts.desktop.enable = false;
   # Support gpg for git signing
   hosts.gpg.enable = true;
 
