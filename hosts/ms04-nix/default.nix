@@ -34,8 +34,6 @@
   ];
 
   hosts.traefik.enable = true;
-  # Enable secrets + append hosts
-  # hosts.secrets.hosts = true;
 
   # hosts.syncthing = {
   #   enable = true;

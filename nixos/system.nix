@@ -11,6 +11,7 @@
     ./modules/gpg.nix
     ./modules/kde.nix
     ./modules/font.nix
+    ./modules/secrets.nix
   ];
 
   # User
