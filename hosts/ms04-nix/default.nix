@@ -4,31 +4,26 @@
   config,
   ...
 }: {
-  networking.hostName = "ms04-nix";
-  # networking.networkmanager.ensureProfiles.profiles = {
-  #   lulu = {
-  #     connection = {
-  #       id= "lulu";
-  #       uuid = "be1a0cf3-036b-4fa3-9b51-72142b78dfe1";
-  #       type = "wifi";
-  #       interface-name = "wlan0";
-  #       permissions = "user:yzld2002:;";
-  #     };
-
-  #     ipv4 = {
-  #       address = "192.168.50.21";
-  #       gateway = "192.168.50.1";
-  #       dns = "192.168.50.1";
-  #       method = "manual";
-  #     };
-
-  #     ipv6 = {
-  #       addr-gen-mode = "default";
-  #       method = "auto";
-  #     };
-  #   };
-  # };
-
+  networking = {
+    hostName = "ms04-nix";
+    networkmanager.enable = false; 
+    bonds = 
+    {
+      bond0 = {
+        interfaces = [ "enp1s0" "enp2s0" ];
+        driverOptions = {
+          miimon = "100";
+          mode = "802.3ad";
+        };
+      };
+    };
+    interfaces.bond0.ipv4.addresses = [
+      {
+        address = "192.168.50.21";
+        prefixLength = 24;
+      }
+    ];
+  };
   # Enable secrets + append hosts
   # hosts.secrets.hosts = true;
 
