@@ -28,9 +28,6 @@
       }
     ];
   };
-  environment.sessionVariables = {
-    TERM = "xterm";
-  };
   # Enable secrets + append hosts
   # hosts.secrets.hosts = true;
 
