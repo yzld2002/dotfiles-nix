@@ -3,5 +3,5 @@ let
   users = [ yzld2002 ];
 in
 {
-  "traefik.dnspod.age".publicKeys = users;
+  "dnspod.age".publicKeys = users;
 }

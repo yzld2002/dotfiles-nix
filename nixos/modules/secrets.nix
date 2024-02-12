@@ -20,7 +20,7 @@ in {
         "/home/yzld2002/.ssh/id_ed25519"
       ];
       secrets = {
-        traefik.dnspod.file = ../../secrets/traefik.dnspod.age;
+        dnspod.file = ../../secrets/dnspod.age;
       };
     };
   };

@@ -13,7 +13,7 @@ in {
   config = mkIf cfg.enable {
     systemd.services.traefik.environment = {
       TENCENTCLOUD_SECRET_ID = "AKIDHVGGCzdAd6Wmu3Dc2KpHZjnFYfZIzZy9";
-      TENCENTCLOUD_SECRET_KEY = "cat ${config.age.secrets.traefik.dnspod.path}";
+      TENCENTCLOUD_SECRET_KEY = "${config.age.secrets.dnspod.path}";
     };
     services.traefik = {
       enable = true;
