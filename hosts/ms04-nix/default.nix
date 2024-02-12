@@ -6,7 +6,7 @@
 }: {
   networking = {
     hostName = "ms04-nix";
-    networkmanager.enable = false; 
+    networkmanager.enable = lib.mkForce false; 
     bonds = 
     {
       bond0 = {
