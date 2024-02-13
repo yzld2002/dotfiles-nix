@@ -1,6 +1,6 @@
-{ lib, config, ... }: 
+{ lib, osConfig, ... }:
 with lib; let
-  cfg = config.hosts.desktop;
+  cfg = osConfig.hosts.desktop;
 in {
   config = mkIf cfg.enable {
     programs.plasma = {
