@@ -22,7 +22,6 @@ in {
       ghc
       lua stylua
       python3
-      docker-compose
       kubectl kubie kubernetes-helm-wrapped argocd krew kompose
     ];
   };
