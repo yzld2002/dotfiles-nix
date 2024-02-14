@@ -24,6 +24,10 @@ http:
       rule: "Host(`dsm.yzld2002.cn`)"
       entryPoints: "https"
       service: dsm-service
+    atuin:
+      rule: "Host(`atuin.yzld2002.cn`)"
+      entryPoints: "https"
+      service: atuin-service
 
   services:
     lede-service:
@@ -46,3 +50,7 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.50.5:5000"
+    atuin-service:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.50.21:8888"
