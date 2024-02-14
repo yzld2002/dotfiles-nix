@@ -24,6 +24,7 @@
     ./modules/ranger.nix
     ./modules/zsh.nix
     ./modules/neovim
+    ./modules/atuin.nix
 
     # Packaged home manager modules
     # inputs.nixvim.homeManagerModules.nixvim
