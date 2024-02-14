@@ -14,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     services.atuin = {
       enable = true;
-      openRegistration = false;
+      openRegistration = true;
       openFirewall = true;
       host = "192.168.50.21";
     };
