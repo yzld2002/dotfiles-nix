@@ -29,6 +29,8 @@
     ];
   };
 
+  services.qemuGuest.enable = true;
+
   imports = [
     ./modules/traefik
   ];
