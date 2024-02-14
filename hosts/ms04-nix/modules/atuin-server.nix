@@ -15,6 +15,8 @@ in {
     services.atuin = {
       enable = true;
       openRegistration = false;
+      openFirewall = true;
+      host = "192.168.50.21";
     };
   };
 }
