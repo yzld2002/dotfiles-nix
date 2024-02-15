@@ -46,6 +46,9 @@ in {
             };
           };
         };
+        providers = {
+          docker = {};
+        };
         # providers = {
         #   kubernetesIngress = {
         #     endpoint = "https://127.0.0.1:6443";
