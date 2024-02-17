@@ -8,8 +8,4 @@
   home.file."dockge/compose.yaml" = {
     source = ./modules/dockge/compose.yaml;
   };
-  home.file."dockge/stacks" = {
-    source = ./modules/dockge/stacks;
-    recursive = true;
-  };
 }
