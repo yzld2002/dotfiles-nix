@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    volumes:
+      - /home/yzld2002/dockge/stacks/homepage/config:/app/config # Make sure your local config directory exists
+      - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.network=dockge_default
+      - traefik.http.routers.homepage.rule=Host(`homepage.yzld2002.cn`)
+      - traefik.http.routers.homepage.entrypoints=https
