@@ -14,6 +14,7 @@ in {
     services.traefik = {
       enable = true;
       environmentFiles = [ "${config.age.secrets.dnspod.path}" ];
+      group = "docker";
       staticConfigOptions = {
         api = {
           dashboard = true;
