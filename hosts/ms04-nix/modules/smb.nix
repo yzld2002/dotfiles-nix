@@ -32,7 +32,7 @@ in {
         netbios name = smbnix
         security = user
         hosts allow = *
-        guest account = nobody
+        guest account = yzld2002
         map to guest = bad user
       '';
       shares = {
