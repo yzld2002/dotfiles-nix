@@ -40,7 +40,7 @@ in {
           path = "/home/yzld2002/download";
           browseable = "yes";
           "read only" = "no";
-          "guest ok" = "no";
+          "guest ok" = "yes";
           "create mask" = "0644";
           "directory mask" = "0755";
           "force user" = "yzld2002";
