@@ -109,6 +109,10 @@
       allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
       allowPing = true;
     };
+    # Samba sharing discovery
+    extraCommands = ''
+      iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
+    '';
   };
 
   # misc
@@ -120,6 +124,9 @@
     NIXOS_OZONE_WL = "1";
     TERM = "xterm";
   };
+
+  # SMB network discovery
+  services.gvfs.enable = true;
 
   # Boot settings: clean /tmp/, latest kernel and enable bootloader
   boot = {
