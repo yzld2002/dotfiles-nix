@@ -34,10 +34,12 @@
   imports = [
     ./modules/traefik
     ./modules/atuin-server.nix
+    ./modules/smb.nix
   ];
 
   hosts.traefik.enable = true;
   hosts.atuin-server.enable = true;
+  hosts.smb.enable = true;
 
   # hosts.syncthing = {
   #   enable = true;
