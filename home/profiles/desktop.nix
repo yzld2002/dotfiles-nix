@@ -19,6 +19,8 @@ in {
       wl-clipboard # wayland clipboard manager
       telegram-desktop
       foliate
+      bluemail
+      obsidian
 
       # theming
       nordic
