@@ -56,9 +56,8 @@ lazy.setup({
 		"hrsh7th/cmp-nvim-lsp-signature-help",
 
 		-- snippets
-		"L3MON4D3/LuaSnip",
+		{ "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets" }},
 		"saadparwaiz1/cmp_luasnip",
-		"rafamadriz/friendly-snippets",
 
 		-- managing & installing lsp servers, linters & formatters
 		"williamboman/mason.nvim",

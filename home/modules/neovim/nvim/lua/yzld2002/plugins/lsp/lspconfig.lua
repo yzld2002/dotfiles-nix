@@ -130,3 +130,8 @@ lspconfig["kotlin_language_server"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
+
+lspconfig["tailwind"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
