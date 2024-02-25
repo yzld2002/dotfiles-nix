@@ -36,6 +36,7 @@ in {
                   "applications:google-chrome.desktop"
                   "applications:kitty.desktop"
                   "applications:org.kde.dolphin.desktop"
+                  "applications:obsidian.desktop"
                 ];
               };
             }
