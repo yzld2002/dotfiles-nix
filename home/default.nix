@@ -71,6 +71,7 @@
     extraConfig = {
       pull.rebase = "true";
       init.defaultBranch = "main";
+      push.autosetupremote = "true";
     };
   };
   programs.lazygit.enable = true;
