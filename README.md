@@ -1,8 +1,8 @@
 My NixOs configurations
 
-Forked from https://github.com/notusknot/dotfiles-nix
+Initially forked from https://github.com/notusknot/dotfiles-nix, but found that repo is quite old.
 
-Changed a lot from the original fork, that repo is quite old.
+Now the configs are based on https://github.com/martijnboers/nixos, which is a great nixos config repo.
 
 Useful links to learn the nix:
 
