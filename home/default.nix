@@ -52,6 +52,7 @@
     neofetch
     fastfetch
     lsd # fance ls
+    nh
   ];
 
   # Let nix-index handle command-not-found
