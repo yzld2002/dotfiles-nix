@@ -75,11 +75,8 @@ in {
 
     # input method
     i18n.inputMethod = {
-      enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [
-        fcitx5-rime
-        fcitx5-nord
-      ];
+      enabled = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [ rime ];
     };
 
     # Enable CUPS to print documents.

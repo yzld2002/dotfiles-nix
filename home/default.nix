@@ -92,9 +92,9 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
   systemd.user.sessionVariables = {
-    GTK_IM_MODULE="fcitx";
-    QT_IM_MODULE="fcitx";
-    XMODIFIERS="@im=fcitx";
+    GTK_IM_MODULE="ibus";
+    QT_IM_MODULE="ibus";
+    XMODIFIERS="@im=ibus";
   };
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
