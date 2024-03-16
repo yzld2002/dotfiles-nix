@@ -21,7 +21,6 @@
   };
 
   imports = [
-    ./modules/ranger.nix
     ./modules/zsh.nix
     ./modules/neovim
     ./modules/atuin.nix
