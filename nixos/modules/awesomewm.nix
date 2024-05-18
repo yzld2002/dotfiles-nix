@@ -8,7 +8,7 @@ with lib; let
   cfg = config.hosts.desktop;
 in {
   options.hosts.desktop = {
-    enable = mkEnableOption "Support KDE desktop";
+    enable = mkEnableOption "Support Awesome desktop";
     wayland = mkOption {
       type = types.bool;
       default = true;
@@ -42,41 +42,34 @@ in {
     };
 
     # Enable the X11 windowing system.
-    services.xserver.enable = true;
-
-    # Enable the KDE Plasma Desktop Environment.
-    services.xserver.displayManager = {
-      # Auto loging crash
-      # sddm.enable = true;
-      lightdm.enable = true;
-
-      # Enable automatic login for the user.
-      autoLogin.enable = true;
-      autoLogin.user = "yzld2002";
-
-      defaultSession =
-        if cfg.wayland
-        then "plasmawayland"
-        else "plasma";
-    };
-
-    services.xserver.desktopManager.plasma5.enable = true;
-
-    environment.plasma5.excludePackages = with pkgs.libsForQt5; [
-      elisa
-      khelpcenter
-      konsole
-    ];
-
-    # Configure keymap in X11
     services.xserver = {
+      enable = true;
+      displayManager = {
+        # Auto loging crash
+        sddm.enable = true;
+        defaultSession = "none+awesome";
+
+        # Enable automatic login for the user.
+        autoLogin.enable = true;
+        autoLogin.user = "yzld2002";
+      };
+
       xkb.layout = "us";
+      windowManager.awesome = {
+        enable = true;
+        luaModules = with pkgs.luaPackages; [
+          luarocks # is the package manager for Lua modules
+          luadbi-mysql # Database abstraction layer
+        ];
+      };  
     };
 
     # input method
     i18n.inputMethod = {
-      enabled = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [ rime ];
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [
+        fcitx5-rime
+      ];
     };
 
     # Enable CUPS to print documents.

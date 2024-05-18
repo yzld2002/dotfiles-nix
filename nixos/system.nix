@@ -54,7 +54,7 @@
     gawk
     zstd
     git
-    wev # wayland xev
+    # wev # wayland xev
     gcc
     wget
     config.services.headscale.package
