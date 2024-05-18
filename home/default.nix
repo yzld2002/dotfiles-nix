@@ -33,8 +33,7 @@
 
     # Used by desktop but lazy loaded
     ./modules/kitty.nix
-    ./modules/kde.nix
-    inputs.plasma-manager.homeManagerModules.plasma-manager
+    ./modules/awesomewm.nix
 
     # profiles based on type of computer usage
     ./profiles/desktop.nix

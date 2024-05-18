@@ -9,7 +9,7 @@
     ./modules/docker.nix
     ./modules/openssh.nix
     ./modules/gpg.nix
-    ./modules/kde.nix
+    ./modules/awesomewm.nix
     ./modules/font.nix
     ./modules/secrets.nix
   ];
