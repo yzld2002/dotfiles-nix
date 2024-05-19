@@ -25,7 +25,7 @@ in {
     home.file.".xprofile".text = ''
       exec awesome &
       exec /home/yzld2002/.config/polybar/launch.sh &
-      exec picom &
+      exec picom
     '';
     xdg.configFile."polybar/" = {
       source = ./polybar;
