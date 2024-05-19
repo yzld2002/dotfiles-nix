@@ -8,7 +8,6 @@ in {
     ];
     services.picom = {
       enable = true;
-      backend = "glx";
       fade = true;
       fadeSteps = [0.1 0.1];
       vSync = true;
