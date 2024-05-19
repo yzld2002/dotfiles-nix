@@ -54,7 +54,17 @@ in {
         autoLogin.user = "yzld2002";
       };
 
-      xkb.layout = "us";
+      # 3840 * 2160 on a 32' inch monitor
+      # dpi.lv
+      dpi = 138;
+
+      xkb = {
+        layout = "us";
+        model = "hhk";
+        # Capslock as ctrl, Ctrl is mapped to Alt keys, Alt is mapped to Win keys
+        # Referencer https://gist.github.com/jatcwang/ae3b7019f219b8cdc6798329108c9aee
+        options = "caps:ctrl_modifier,altwin:swap_alt_win";
+      };
       windowManager.awesome = {
         enable = true;
         luaModules = with pkgs.luaPackages; [
