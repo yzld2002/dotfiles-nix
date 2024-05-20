@@ -32,7 +32,6 @@
     inputs.nix-index-database.hmModules.nix-index
 
     # Used by desktop but lazy loaded
-    ./modules/kitty.nix
     ./modules/awesomewm.nix
 
     # profiles based on type of computer usage
@@ -52,7 +51,8 @@
     lsd # fance ls
     nh
   ];
-
+  programs.wezterm.enable = true;
+  home.file.".wezterm.lua".source = ./modules/wezterm/wezterm.lua;
   # Let nix-index handle command-not-found
   programs.nix-index.enable = true;
   # Run programs with , cowsay
