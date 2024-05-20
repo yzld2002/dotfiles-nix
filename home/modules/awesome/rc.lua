@@ -49,7 +49,7 @@ beautiful.init("/home/yzld2002/.config/awesome/theme.lua")
 beautiful.get().wallpaper = "/home/yzld2002/.config/awesome/background.png"
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = "wezterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
