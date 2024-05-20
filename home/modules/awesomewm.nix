@@ -14,8 +14,6 @@ in {
       exec fcitx5
     '';
 
-    home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ-AA";
-
     xdg.configFile."polybar/" = {
       source = ./polybar;
       recursive = true;
