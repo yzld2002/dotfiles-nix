@@ -44,15 +44,6 @@ in {
     # Enable the X11 windowing system.
     services.xserver = {
       enable = true;
-      displayManager = {
-        # Auto loging crash
-        sddm.enable = true;
-        defaultSession = "none+awesome";
-
-        # Enable automatic login for the user.
-        autoLogin.enable = true;
-        autoLogin.user = "yzld2002";
-      };
 
       # 3840 * 2160 on a 32' inch monitor
       # dpi.lv
@@ -72,6 +63,14 @@ in {
           luadbi-mysql # Database abstraction layer
         ];
       };  
+    };
+    services.displayManager = {
+      sddm.enable = true;
+      defaultSession = "none+awesome";
+
+      # Enable automatic login for the user.
+      autoLogin.enable = true;
+      autoLogin.user = "yzld2002";
     };
 
     # input method
