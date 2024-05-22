@@ -54,7 +54,7 @@ in {
         model = "hhk";
         # Capslock as ctrl, Ctrl is mapped to Alt keys, Alt is mapped to Win keys
         # Referencer https://gist.github.com/jatcwang/ae3b7019f219b8cdc6798329108c9aee
-        options = "caps:ctrl_modifier,altwin:swap_alt_win,ctrl:lctrl_lalt";
+        options = "caps:ctrl_modifier,altwin:swap_alt_win";
       };
       windowManager.awesome = {
         enable = true;

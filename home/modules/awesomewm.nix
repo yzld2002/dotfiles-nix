@@ -5,6 +5,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       polybar
+      xorg.xmodmap
     ];
 
     home.file.".xprofile".text = ''
@@ -12,6 +13,19 @@ in {
       exec /home/yzld2002/.config/polybar/launch.sh &
       exec picom &
       exec fcitx5
+    '';
+
+    # map Control_L to Alt_L
+    home.file.".Xmodmap".text = ''
+      keycode 37 = Alt_L
+      clear control
+      clear mod1
+      add control = Control_L
+      add mod1 = Alt_L
+    '';
+
+    home.file.".xinitrc".text = ''
+      xmodmap ~/.Xmodmap
     '';
 
     xdg.configFile."polybar/" = {
