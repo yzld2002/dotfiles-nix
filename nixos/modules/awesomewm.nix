@@ -52,9 +52,6 @@ in {
       xkb = {
         layout = "us";
         model = "macintosh_hhk";
-        # Capslock as ctrl, Ctrl is mapped to Alt keys, Alt is mapped to Win keys
-        # Referencer https://gist.github.com/jatcwang/ae3b7019f219b8cdc6798329108c9aee
-        options = "caps:ctrl_modifier,ctrl:swap_lwin_lctrl,altwin:swap_alt_win";
       };
       windowManager.awesome = {
         enable = true;
