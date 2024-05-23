@@ -15,19 +15,6 @@ in {
       exec fcitx5
     '';
 
-    # map Control_L to Alt_L
-    home.file.".Xmodmap".text = ''
-      keycode 37 = Alt_L
-      clear control
-      clear mod1
-      add control = Control_L
-      add mod1 = Alt_L
-    '';
-
-    home.file.".xinitrc".text = ''
-      xmodmap ~/.Xmodmap
-    '';
-
     xdg.configFile."polybar/" = {
       source = ./polybar;
       recursive = true;
