@@ -5,7 +5,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       polybar
-      xorg.xmodmap
+      pwvucontrol
     ];
 
     home.file.".xprofile".text = ''
