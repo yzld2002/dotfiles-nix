@@ -50,7 +50,6 @@
     fastfetch
     lsd # fance ls
     nh
-    # for yazi
     unar
     poppler # preview pdf
     xclip
@@ -78,8 +77,10 @@
   };
   programs.lazygit.enable = true;
   programs.gh.enable = true;
-  programs.yazi.enable = true;
-
+  programs.yazi = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
