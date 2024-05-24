@@ -123,7 +123,12 @@
     EDITOR = "nvim";
     NIXOS_OZONE_WL = "1";
     TERM = "xterm";
+    BROWSER = "google-chrome";
   };
+
+  environment.extraInit = ''
+    xset s off -dpms
+  '';
 
   # SMB network discovery
   services.gvfs.enable = true;
