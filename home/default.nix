@@ -50,6 +50,10 @@
     fastfetch
     lsd # fance ls
     nh
+    # for yazi
+    unar
+    poppler # preview pdf
+    xclip
   ];
   programs.wezterm.enable = true;
   home.file.".wezterm.lua".source = ./modules/wezterm/wezterm.lua;
