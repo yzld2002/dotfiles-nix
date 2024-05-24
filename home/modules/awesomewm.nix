@@ -11,7 +11,6 @@ in {
     home.file.".xprofile".text = ''
       exec awesome &
       exec /home/yzld2002/.config/polybar/launch.sh &
-      exec picom &
       exec fcitx5
     '';
 
@@ -27,7 +26,7 @@ in {
 
     # picom
     services.picom = {
-      enable = true;
+      enable = false;
       backend = "glx";
       vSync = true;
       inactiveOpacity = 0.8;
