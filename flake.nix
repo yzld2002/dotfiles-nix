@@ -8,12 +8,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Home manager kde
-    plasma-manager = {
-      url = "github:pjones/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
     agenix.url = "github:ryantm/agenix";
 
     nix-index-database.url = "github:Mic92/nix-index-database";

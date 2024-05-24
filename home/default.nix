@@ -32,9 +32,7 @@
     inputs.nix-index-database.hmModules.nix-index
 
     # Used by desktop but lazy loaded
-    ./modules/kitty.nix
-    ./modules/kde.nix
-    inputs.plasma-manager.homeManagerModules.plasma-manager
+    ./modules/awesomewm.nix
 
     # profiles based on type of computer usage
     ./profiles/desktop.nix
@@ -48,13 +46,13 @@
     fzf # A command-line fuzzy finder
     fd # easier find
     direnv # used for .envrc files
-    ranger
     neofetch
     fastfetch
     lsd # fance ls
     nh
   ];
-
+  programs.wezterm.enable = true;
+  home.file.".wezterm.lua".source = ./modules/wezterm/wezterm.lua;
   # Let nix-index handle command-not-found
   programs.nix-index.enable = true;
   # Run programs with , cowsay
@@ -76,18 +74,8 @@
   };
   programs.lazygit.enable = true;
   programs.gh.enable = true;
+  programs.yazi.enable = true;
 
-  programs.ranger = {
-    enable = true;
-    extraConfig = ''
-      map e shell vim %c
-      set vcs_aware true
-      set draw_borders separators
-      set nested_ranger_warning error
-      set preview_images true
-      set preview_images_method kitty
-    '';
-  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
