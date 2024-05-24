@@ -16,6 +16,15 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment = {
+      sessionVariables = {
+        BROWSER = "google-chrome-stable";
+      };
+      extraInit = ''
+        xset s off -dpms
+      '';
+    };
+
     # Enable opengpl
     hardware = {
       opengl = {
