@@ -20,9 +20,6 @@ in {
       sessionVariables = {
         BROWSER = "google-chrome-stable";
       };
-      extraInit = ''
-        xset s off -dpms
-      '';
     };
 
     # Enable opengpl

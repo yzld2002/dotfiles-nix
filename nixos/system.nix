@@ -122,7 +122,7 @@
   environment.sessionVariables = {
     EDITOR = "nvim";
     NIXOS_OZONE_WL = "1";
-    TERM = "xterm";
+    TERM = "xterm-256color";
   };
 
   # SMB network discovery
