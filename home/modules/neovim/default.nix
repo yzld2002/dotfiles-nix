@@ -4,5 +4,5 @@
       enable = true;
       defaultEditor = true;
     };
-    home.file."./.config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/home/modules/neovim/nvim"
+    home.file."./.config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/home/modules/neovim/nvim";
 }

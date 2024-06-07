@@ -53,6 +53,7 @@
     unar
     poppler # preview pdf
     xclip
+    marksman
   ];
   programs.wezterm.enable = true;
   home.file.".wezterm.lua".source = ./modules/wezterm/wezterm.lua;
