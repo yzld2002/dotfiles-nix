@@ -24,6 +24,7 @@ in {
       python3 poetry
       kubectl kubie kubernetes-helm-wrapped argocd krew kompose
       jdk kotlin
+      postgresql
     ];
   };
 }
