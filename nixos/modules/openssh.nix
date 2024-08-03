@@ -14,9 +14,12 @@ in {
   config = mkIf cfg.enable {
     services.openssh = {
       enable = true;
-      settings.PasswordAuthentication = false;
-      settings.KbdInteractiveAuthentication = false;
-      settings.PermitRootLogin = "no";
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "no";
+        AcceptEnv = "*";
+      };
       ports = [22];
       openFirewall = true;
       hostKeys = [
