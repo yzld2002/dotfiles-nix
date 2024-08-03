@@ -20,7 +20,8 @@ return {
     build = ":TSUpdate html",
     cmd = "Leet",
     opts = {
-      lang = "kotlin"
+      lang = "kotlin",
     },
-  }
+  },
+  "numToStr/Navigator.nvim",
 }

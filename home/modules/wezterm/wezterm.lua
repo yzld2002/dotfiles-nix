@@ -28,7 +28,7 @@ local function conditionalActivatePane(window, pane, pane_direction, vim_directi
 	if isViProcess(pane) then
 		window:perform_action(
 			-- This should match the keybinds you set in Neovim.
-			act.SendKey({ key = vim_direction, mods = "ALT" }),
+			act.SendKey({ key = vim_direction, mods = "CTRL" }),
 			pane
 		)
 	else
@@ -51,10 +51,10 @@ end)
 
 -- and finally, return the configuration to wezterm
 config.keys = {
-	{ key = "h", mods = "ALT", action = act.EmitEvent("ActivatePaneDirection-left") },
-	{ key = "j", mods = "ALT", action = act.EmitEvent("ActivatePaneDirection-down") },
-	{ key = "k", mods = "ALT", action = act.EmitEvent("ActivatePaneDirection-up") },
-	{ key = "l", mods = "ALT", action = act.EmitEvent("ActivatePaneDirection-right") },
+	{ key = "h", mods = "CTRL", action = act.EmitEvent("ActivatePaneDirection-left") },
+	{ key = "j", mods = "CTRL", action = act.EmitEvent("ActivatePaneDirection-down") },
+	{ key = "k", mods = "CTRL", action = act.EmitEvent("ActivatePaneDirection-up") },
+	{ key = "l", mods = "CTRL", action = act.EmitEvent("ActivatePaneDirection-right") },
 }
 
 return config
