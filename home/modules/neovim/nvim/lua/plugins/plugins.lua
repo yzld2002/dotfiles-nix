@@ -23,5 +23,14 @@ return {
       lang = "kotlin",
     },
   },
-  "numToStr/Navigator.nvim",
+  {
+    "numToStr/Navigator.nvim",
+    opts = {},
+    keys = {
+      { "<C-h>", mode = { "n", "t" }, "<CMD>NavigatorLeft<CR>" },
+      { "<C-l>", mode = { "n", "t" }, "<CMD>NavigatorRight<CR>" },
+      { "<C-k>", mode = { "n", "t" }, "<CMD>NavigatorUp<CR>" },
+      { "<C-j>", mode = { "n", "t" }, "<CMD>NavigatorDown<CR>" },
+    },
+  },
 }
