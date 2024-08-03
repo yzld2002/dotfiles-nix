@@ -117,6 +117,7 @@
 
   # misc
   programs.zsh.enable = true;
+  programs.nix-ld.enable=true;
 
   # Default env variables
   environment.sessionVariables = {
