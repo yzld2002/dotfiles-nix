@@ -17,7 +17,7 @@ in {
       gcc gccStdenv
       tree-sitter
       nodejs nodePackages.eslint
-      rustc cargo clippy rustfmt
+      rustc cargo clippy rustfmt rust-analyzer
       go
       ghc
       lua stylua
