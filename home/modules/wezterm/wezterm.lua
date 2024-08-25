@@ -20,8 +20,23 @@ local function isViProcess(pane)
 	-- get_foreground_process_name On Linux, macOS and Windows,
 	-- the process can be queried to determine this path. Other operating systems
 	-- (notably, FreeBSD and other unix systems) are not currently supported
-	return pane:get_foreground_process_name():find("n?vim") ~= nil
+	-- return pane:get_foreground_process_name():find("n?vim") ~= nil
 	-- return pane:get_title():find("n?vim") ~= nil
+	local tty = pane:get_tty_name()
+	if tty == nil then
+		return false
+	end
+
+	local success, stdout, stderr = wezterm.run_child_process({
+		"sh",
+		"-c",
+		"ps -o state= -o comm= -t"
+			.. wezterm.shell_quote_arg(tty)
+			.. " | "
+			.. "grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?)(diff)?$'",
+	})
+
+	return success
 end
 
 local function conditionalActivatePane(window, pane, pane_direction, vim_direction)
