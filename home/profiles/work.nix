@@ -25,6 +25,7 @@ in {
       kubectl kubie kubernetes-helm-wrapped argocd krew kompose
       jdk kotlin
       postgresql
+      docker-compose
     ];
   };
 }
