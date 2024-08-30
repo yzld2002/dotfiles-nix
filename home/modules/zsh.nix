@@ -10,7 +10,7 @@
     syntaxHighlighting = { enable = true; };
     oh-my-zsh = {
       enable = true;
-      plugins = [ "z" "extract" "fd" "fzf" "git" ];
+      plugins = [ "z" "extract" "fzf" "git" ];
     };
     shellAliases = {
       vim = "nvim";
