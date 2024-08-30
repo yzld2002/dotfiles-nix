@@ -32,7 +32,7 @@
     inputs.nix-index-database.hmModules.nix-index
 
     # Used by desktop but lazy loaded
-    ./modules/awesomewm.nix
+    # ./modules/awesomewm.nix
 
     # profiles based on type of computer usage
     ./profiles/desktop.nix
