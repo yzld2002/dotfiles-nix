@@ -24,10 +24,10 @@ in {
 
     # Enable opengpl
     hardware = {
-      opengl = {
+      graphics = {
         enable = true;
-        driSupport32Bit = true;
-        extraPackages = with pkgs; [rocm-opencl-icd rocm-opencl-runtime];
+        enable32Bit = true;
+        extraPackages = with pkgs; [rocm-opencl-icd rocm-opencl-runtime rocmPackages.clr.icd];
       };
     };
 
@@ -75,7 +75,7 @@ in {
 
     # input method
     i18n.inputMethod = {
-      enabled = "fcitx5";
+      type = "fcitx5";
       fcitx5.addons = with pkgs; [
         fcitx5-rime
       ];
