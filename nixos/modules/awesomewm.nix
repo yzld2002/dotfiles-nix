@@ -24,10 +24,9 @@ in {
 
     # Enable opengpl
     hardware = {
-      opengl = {
+      graphics = {
         enable = true;
-        driSupport32Bit = true;
-        extraPackages = with pkgs; [rocm-opencl-icd rocm-opencl-runtime];
+        extraPackages = with pkgs; [ rocmPackages.clr.icd amdvlk ];
       };
     };
 
@@ -45,36 +44,31 @@ in {
     # Enable the X11 windowing system.
     services.xserver = {
       enable = true;
+      videoDrivers = [ "amdgpu" ];
 
       # 3840 * 2160 on a 32' inch monitor
       # dpi.lv
-      dpi = 138;
+      # dpi = 138;
 
       xkb = {
         layout = "us";
         model = "macintosh_hhk";
       };
-      windowManager.awesome = {
-        enable = true;
-        luaModules = with pkgs.luaPackages; [
-          luarocks # is the package manager for Lua modules
-          luadbi-mysql # Database abstraction layer
-        ];
-      };  
     };
     services.displayManager = {
       sddm.enable = true;
-      defaultSession = "none+awesome";
 
       # Enable automatic login for the user.
       autoLogin.enable = true;
       autoLogin.user = "yzld2002";
     };
+    services.desktopManager.plasma6.enable = true;
 
     # input method
     i18n.inputMethod = {
       type = "fcitx5";
       enable = true;
+      fcitx5.waylandFrontend = true;
       fcitx5.addons = with pkgs; [
         fcitx5-rime
       ];
@@ -84,13 +78,6 @@ in {
     services.printing.enable = true;
 
     # Enable sound with pipewire.
-    hardware.pulseaudio.enable = false;
-    security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
+    hardware.pulseaudio.enable = true;
   };
 }
