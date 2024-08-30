@@ -28,7 +28,7 @@ in {
     services.picom = {
       enable = true;
       backend = "glx";
-      vSync = "opengl";
+      vSync = true;
       inactiveOpacity = 1.0;
       fade = true;
       shadow = false;
