@@ -29,7 +29,12 @@ in {
         driSupport32Bit = true;
         extraPackages = with pkgs; [rocm-opencl-icd rocm-opencl-runtime];
       };
+      hardware.extraPackages = with pkgs; [
+        rocmPackages.clr.icd
+      ];
+      graphics.driSupport32Bit = true;
     };
+
 
     # Bluetooth
     hardware.bluetooth = {
@@ -45,6 +50,7 @@ in {
     # Enable the X11 windowing system.
     services.xserver = {
       enable = true;
+      videoDrivers = [ "amdgpu" ];
 
       # 3840 * 2160 on a 32' inch monitor
       # dpi.lv
