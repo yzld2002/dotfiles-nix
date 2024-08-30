@@ -26,7 +26,7 @@ in {
 
     # picom
     services.picom = {
-      enable = false;
+      enable = true;
       backend = "glx";
       vSync = true;
       inactiveOpacity = 0.8;
