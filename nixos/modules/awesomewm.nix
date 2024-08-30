@@ -26,11 +26,11 @@ in {
     hardware = {
       graphics = {
         enable = true;
-        enable32Bit = true;
-        extraPackages = with pkgs; [rocm-opencl-icd rocm-opencl-runtime rocmPackages.clr.icd];
+        extraPackages = with pkgs; [ amdvlk rocmPackages.clr.icd];
       };
     };
 
+    environment.systemPackages = with pkgs; [ blender-hip ];
 
     # Bluetooth
     hardware.bluetooth = {
@@ -75,6 +75,7 @@ in {
 
     # input method
     i18n.inputMethod = {
+      enable = true;
       type = "fcitx5";
       fcitx5.addons = with pkgs; [
         fcitx5-rime
