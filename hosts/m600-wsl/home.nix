@@ -5,5 +5,5 @@
 
   # Enable profiles
   hosts.work.enable = true;
-  hosts.gui-dev.enable = true;
+  # hosts.gui-dev.enable = true;
 }

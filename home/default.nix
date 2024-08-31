@@ -8,7 +8,7 @@
 }: {
   home.username = "yzld2002";
   home.homeDirectory = "/home/yzld2002";
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 
   nixpkgs = {
     config = {

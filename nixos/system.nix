@@ -130,15 +130,15 @@
   services.gvfs.enable = true;
 
   # Boot settings: clean /tmp/, latest kernel and enable bootloader
-  boot = {
-    tmp.cleanOnBoot = true;
-    loader = {
-      systemd-boot.enable = true;
-      systemd-boot.editor = false;
-      efi.canTouchEfiVariables = true;
-      timeout = 5;
-    };
-  };
+  # boot = {
+  #   tmp.cleanOnBoot = true;
+  #   loader = {
+  #     systemd-boot.enable = true;
+  #     systemd-boot.editor = false;
+  #     efi.canTouchEfiVariables = true;
+  #     timeout = 5;
+  #   };
+  # };
 
   # Set up locales (timezone and keyboard layout)
   time.timeZone = "Asia/Shanghai";
@@ -155,5 +155,5 @@
     Defaults timestamp_timeout=300
   '';
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }
