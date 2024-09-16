@@ -8,15 +8,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [
-      8000
-    ];
-    networking.firewall.allowedUDPPorts = [
-      8000
-    ];
     services.vaultwarden = {
       enable = true;
       environmentFile = "${config.age.secrets.vaultwarden.path}";
+      backupDir = "/home/yzld2002/vaultwarden/";
       config = {
         DOMAIN = "https://vaultwarden.yzld2002.cn";
         SIGNUPS_ALLOWED = true;
