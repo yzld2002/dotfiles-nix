@@ -20,7 +20,7 @@ in
       config = {
         DOMAIN = "https://vaultwarden.yzld2002.cn";
         SIGNUPS_ALLOWED = true;
-        ROCKET_ADDRESS = "::1";
+        ROCKET_ADDRESS = "0.0.0.0";
       };
     };
   };
