@@ -5,6 +5,7 @@
   ...
 }: {
   networking.hostName = "m600-wsl";
+  boot.loader.systemd-boot.enable = false;
   hosts.desktop = {
     enable = false;
   };
