@@ -1,12 +1,12 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with lib; let
   cfg = config.hosts.smb;
-in {
+in
+{
   options.hosts.smb = {
     enable = mkEnableOption "Enable Samba";
   };
@@ -26,15 +26,17 @@ in {
     services.samba = {
       enable = true;
       securityType = "user";
-      extraConfig = ''
-        workgroup = WORKGROUP
-        server string = smbnix
-        netbios name = smbnix
-        security = user
-        hosts allow = *
-        guest account = yzld2002
-        map to guest = bad user
-      '';
+      settings = {
+        global = {
+          "workgroup" = "WORKGROUP";
+          "server string" = "smbnix";
+          "netbios name" = "smbnix";
+          "security" = "user";
+          "hosts allow" = "*";
+          "guest account" = "yzld2002";
+          "map to guest" = "bad user";
+        };
+      };
       shares = {
         public = {
           path = "/home/yzld2002/download";
