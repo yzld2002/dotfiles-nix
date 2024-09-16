@@ -8,7 +8,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    service.vaultwarden = {
+    services.vaultwarden = {
       enable = true;
       backupDir = "/home/yzld2002/download/vaultwarden";
       environmentFile = [ "${config.age.secrets.vaultwarden.path}" ];
