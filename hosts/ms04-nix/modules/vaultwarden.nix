@@ -10,7 +10,7 @@ in
   config = mkIf cfg.enable {
     services.vaultwarden = {
       enable = true;
-      backupDir = "/home/yzld2002/download/vaultwarden";
+      backupDir = "/home/yzld2002/vaultwarden";
       environmentFile = "${config.age.secrets.vaultwarden.path}";
       config = {
         DOMAIN = "https://vaultwarden.yzld2002.cn";
