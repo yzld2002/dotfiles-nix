@@ -11,7 +11,7 @@ in
     services.vaultwarden = {
       enable = true;
       backupDir = "/home/yzld2002/download/vaultwarden";
-      environmentFile = [ "${config.age.secrets.vaultwarden.path}" ];
+      environmentFile = "${config.age.secrets.vaultwarden.path}";
       config = {
         DOMAIN = "https://vaultwarden.yzld2002.cn";
         SIGNUPS_ALLOWED = true;
