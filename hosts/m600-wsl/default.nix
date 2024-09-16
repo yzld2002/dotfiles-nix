@@ -5,7 +5,8 @@
   ...
 }: {
   networking.hostName = "m600-wsl";
-  boot.loader.systemd-boot.enable = false;
+  # wsl does not have systemd-boot
+  boot.loader.systemd-boot.enable = lib.mkForce false;
   hosts.desktop = {
     enable = false;
   };
