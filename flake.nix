@@ -71,14 +71,14 @@
     nixosConfigurations.m600-wsl = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-	nixos-wsl.nixosModules.default
-	{
-	  system.stateVersion = "24.05";
-	  wsl.enable = true;
-	  wsl.defaultUser = "yzld2002";
-	}
-	./nixos/system.nix
-	./hosts/m600-wsl/default.nix
+        nixos-wsl.nixosModules.default
+        {
+          system.stateVersion = "24.05";
+          wsl.enable = true;
+          wsl.defaultUser = "yzld2002";
+        }
+        ./nixos/system.nix
+        ./hosts/m600-wsl/default.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useUserPackages = true;
@@ -92,6 +92,7 @@
         }
       ];
     };
+
     nixosConfigurations.ms04-nix = mkSystem "ms04-nix" {
       system = "x86_64-linux";
     };
