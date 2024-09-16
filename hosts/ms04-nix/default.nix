@@ -1,26 +1,25 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
+{ lib
+, pkgs
+, config
+, ...
 }: {
   networking = {
     hostName = "ms04-nix";
-    networkmanager.enable = lib.mkForce false; 
+    networkmanager.enable = lib.mkForce false;
     nameservers = [ "192.168.50.1" ];
     defaultGateway = {
       address = "192.168.50.1";
       interface = "bond0";
     };
-    bonds = 
-    {
-      bond0 = {
-        interfaces = [ "enp1s0" "enp2s0" ];
-        driverOptions = {
-          mode = "802.3ad";
+    bonds =
+      {
+        bond0 = {
+          interfaces = [ "enp1s0" "enp2s0" ];
+          driverOptions = {
+            mode = "802.3ad";
+          };
         };
       };
-    };
     interfaces.bond0.ipv4.addresses = [
       {
         address = "192.168.50.21";
@@ -35,11 +34,13 @@
     ./modules/traefik
     ./modules/atuin-server.nix
     ./modules/smb.nix
+    ./modules/vaultwarden.nix
   ];
 
   hosts.traefik.enable = true;
   hosts.atuin-server.enable = true;
   hosts.smb.enable = true;
+  hosts.vaultwarden.enable = true;
 
   # hosts.syncthing = {
   #   enable = true;
