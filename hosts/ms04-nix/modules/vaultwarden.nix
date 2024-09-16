@@ -1,8 +1,4 @@
-{ cfg
-, lib
-, pkgs
-, ...
-}:
+{ config, lib, pkgs, ... }:
 with lib; let
   cfg = config.hosts.vaultwarden;
 in
