@@ -12,6 +12,7 @@
 
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
 
   outputs = {
@@ -20,12 +21,12 @@
     home-manager,
     agenix,
     nix-index-database,
+    nixos-wsl,
     ...
   } @ inputs: let
     inherit (self) outputs;
     systems = [
       "x86_64-linux"
-      "aarch64-linux"
     ];
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
@@ -66,9 +67,32 @@
     # Formatter for your nix files, available through 'nix fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    nixosConfigurations.m600 = mkSystem "m600" {
+    # wsl is a bit different, use a minimal config first
+    nixosConfigurations.m600-wsl = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      modules = [
+        nixos-wsl.nixosModules.default
+        {
+          system.stateVersion = "24.05";
+          wsl.enable = true;
+          wsl.defaultUser = "yzld2002";
+        }
+        ./nixos/system.nix
+        ./hosts/m600-wsl/default.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useUserPackages = true;
+          home-manager.users.yzld2002 = import ./hosts/m600-wsl/home.nix;
+          home-manager.extraSpecialArgs = {inherit inputs outputs;};
+        }
+        # Secret management
+        agenix.nixosModules.default
+        {
+          environment.systemPackages = [agenix.packages.x86_64-linux.default];
+        }
+      ];
     };
+
     nixosConfigurations.ms04-nix = mkSystem "ms04-nix" {
       system = "x86_64-linux";
     };
