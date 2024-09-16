@@ -34,7 +34,6 @@ in
           "hosts allow" = "*";
           "guest account" = "yzld2002";
           "map to guest" = "bad user";
-          security = "user";
         };
         public = {
           path = "/home/yzld2002/download";
