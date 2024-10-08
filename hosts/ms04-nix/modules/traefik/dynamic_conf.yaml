@@ -28,6 +28,10 @@ http:
       rule: "Host(`atuin.yzld2002.cn`)"
       entryPoints: "https"
       service: atuin-service
+    vaultwarden:
+      rule: "Host(`vaultwarden.yzld2002.cn`)"
+      entryPoints: "https"
+      service: vaultwarden-service
 
   services:
     lede-service:
@@ -54,3 +58,7 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.50.21:8888"
+    vaultwarden-service:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.50.21:8000"

@@ -25,7 +25,6 @@ in
 
     services.samba = {
       enable = true;
-      securityType = "user";
       settings = {
         global = {
           "workgroup" = "WORKGROUP";
@@ -36,8 +35,6 @@ in
           "guest account" = "yzld2002";
           "map to guest" = "bad user";
         };
-      };
-      shares = {
         public = {
           path = "/home/yzld2002/download";
           browseable = "yes";

@@ -1,12 +1,12 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with lib; let
   cfg = config.hosts.secrets;
-in {
+in
+{
   options.hosts.secrets = {
     hosts = mkOption {
       type = types.bool;
@@ -21,6 +21,7 @@ in {
       ];
       secrets = {
         dnspod.file = ../../secrets/dnspod.age;
+        vaultwarden.file = ../../secrets/vaultwarden.age;
       };
     };
   };

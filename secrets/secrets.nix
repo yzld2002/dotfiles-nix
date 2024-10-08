@@ -4,4 +4,5 @@ let
 in
 {
   "dnspod.age".publicKeys = users;
+  "vaultwarden.age".publicKeys = users;
 }
