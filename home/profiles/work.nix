@@ -28,8 +28,7 @@ in
       ghc
       lua
       stylua
-      poetry
-      python311
+      python3
       kubectl
       kubie
       kubernetes-helm-wrapped
