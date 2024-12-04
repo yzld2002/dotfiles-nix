@@ -39,6 +39,7 @@ in
       kotlin
       postgresql
       docker-compose
+      lazydocker
     ];
   };
 }
